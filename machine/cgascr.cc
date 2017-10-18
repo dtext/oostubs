@@ -28,10 +28,10 @@ void CGA_Screen::setpos (int x, int y){
     IO_Port index_port = IO_Port(0x3d4);
     IO_Port data_port = IO_Port(0x3d5);
 
-    index_port.outb(14);
+    index_port.outb(15);
     data_port.outb(x);
 
-    index_port.outb(15);
+    index_port.outb(14);
     data_port.outb(y);
 }
 
@@ -39,17 +39,16 @@ void CGA_Screen::getpos(int &x, int &y){
     IO_Port index_port = IO_Port(0x3d4);
     IO_Port data_port = IO_Port(0x3d5);
 
-    index_port.outb(14);
+    index_port.outb(15);
     x = data_port.inb();
 
-    index_port.outb(15);
+    index_port.outb(14);
     y = data_port.inb();
 }
 
 void CGA_Screen::print(char* text, int length, unsigned char attrib){
     int x,y;
     getpos(x,y);
-    //x=0;y=0;
     for(int i=0;i<length;i++){
         show(x,y,*text,attrib);
         text++;
