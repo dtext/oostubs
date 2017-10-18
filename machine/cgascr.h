@@ -23,6 +23,9 @@ private:
 
     CGA_Screen(const CGA_Screen &copy);
 
+    void get_character(int x,int y, char &character,char &attrib);
+    void scroll();
+
 public:
     CGA_Screen() {}
 

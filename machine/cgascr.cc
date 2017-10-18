@@ -57,13 +57,43 @@ void CGA_Screen::print(char* text, int length, unsigned char attrib){
     int x,y;
     getpos(x,y);
     for(int i=0;i<length;i++){
-        if(x>ROW_SIZE){
+        //next line
+        if(x>ROW_SIZE || *text=='\n'){
             x=0;
-            y++;
+            //scrolling
+            if(y+1==ROW_COUNT){
+                scroll();
+            }else{
+                y++;
+            }
         }
-        show(x,y,*text,attrib);
+        if(*text!='\n')
+            show(x,y,*text,attrib);
         text++;
         x++;
     }
     setpos(x,y);
+}
+
+void CGA_Screen::get_character(int x, int y, char &c,char &attrib){
+    char *CGA_START = (char *)0xb8000;
+    char *pos;
+    pos = CGA_START + 2*(x + y*80);
+    c = *pos;
+    attrib = *(pos + 1);
+}
+
+void CGA_Screen::scroll(){
+    //move every character one row up
+    for(int y=0;y<ROW_COUNT-1;y++){
+        for(int x=0;x<ROW_SIZE;x++){
+            char c,attrib;
+            get_character(x,y+1,c,attrib);
+            show(x,y,c,attrib);
+        }
+    }
+    //clear last row
+    for(int x;x<ROW_SIZE;x++){
+        show(x,ROW_COUNT-1,' ',15);
+    }
 }
