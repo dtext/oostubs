@@ -17,12 +17,10 @@
 #include "object/o_stream.h"
 #include "machine/cgascr.h"
 
-class CGA_Stream 
-/* Hier muesst ihr selbst Code vervollstaendigen */         
- {
+class CGA_Stream
+{
 private:
-      CGA_Stream(CGA_Stream &copy); // Verhindere Kopieren
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
- };
+    CGA_Stream(CGA_Stream &copy); // Verhindere Kopieren
+};
 
 #endif

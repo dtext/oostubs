@@ -12,15 +12,12 @@
 
 #include "user/appl.h"
 #include "device/cgastr.h"
-/* Hier muesst ihr selbst Code vervollstaendigen */         
-         
+
 /* GLOBALE VARIABLEN */
 
 extern CGA_Stream kout;
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
-         
-void Application::action ()
- {
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
- 
- }
+
+
+void Application::action() {
+
+}

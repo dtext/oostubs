@@ -21,13 +21,11 @@
 
 #include "object/strbuf.h"
 
-class O_Stream
-/* Hier muesst ihr selbst Code vervollstaendigen */         
- {
+class O_Stream {
 private:
-      O_Stream(const O_Stream &copy); // Verhindere Kopieren
-/* Hier muesst ihr selbst Code vervollstaendigen */     
- };
+    O_Stream(const O_Stream &copy); // Verhindere Kopieren
+
+};
 
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
@@ -43,19 +41,14 @@ private:
 /*---------------------------------------------------------------------------*/
 
 // ENDL: fuegt einen Zeilenumbruch in die Ausgabe ein.
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
 
 // BIN: waehlt das binaere Zahlensystem aus.
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
-        
+
 // OCT: waehlt das oktale Zahlensystem aus.
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
-        
+
 // DEC: waehlt das dezimale Zahlensystem aus.
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
-        
+
 // HEX: waehlt das hexadezimale Zahlensystem aus.
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
 
 #endif
 

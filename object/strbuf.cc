@@ -14,5 +14,3 @@
 /*****************************************************************************/
 
 #include "object/strbuf.h"
-
-/* Hier muesst ihr selbst Code vervollstaendigen */ 

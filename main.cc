@@ -1,14 +1,8 @@
-/* $Id$ */
+#include "machine/cgascr.h"
 
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
-        
 int main()
 {
-/* Hier muesst ihr selbst Code vervollstaendigen */         
-         
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
-                         
-/* Hier muesst ihr selbst Code vervollstaendigen */                         
- 
-   return 0;
+    CGA_Screen cga_screen;
+    cga_screen.show(0,0,'X',0x0f);
+    return 0;
  }

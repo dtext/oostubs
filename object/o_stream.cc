@@ -17,5 +17,3 @@
 /*****************************************************************************/
 
 #include "object/o_stream.h"
-
-/* Hier muesst ihr selbst Code vervollstaendigen */ 

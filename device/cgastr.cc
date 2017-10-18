@@ -12,5 +12,3 @@
 /*****************************************************************************/
 
 #include "device/cgastr.h"
-
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
