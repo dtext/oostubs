@@ -21,8 +21,10 @@
 class Stringbuffer {
 private:
     Stringbuffer(const Stringbuffer &copy); // Verhindere Kopieren
-    char buffer[BUFFER_SIZE];
     int i = 0;
+
+protected:
+    char buffer[BUFFER_SIZE];
 
 public:
     void put(char c);
