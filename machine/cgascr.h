@@ -17,6 +17,10 @@
 
 class CGA_Screen {
 private:
+
+    static const int ROW_COUNT = 25;
+    static const int ROW_SIZE = 80;
+
     CGA_Screen(const CGA_Screen &copy);
 
 public:

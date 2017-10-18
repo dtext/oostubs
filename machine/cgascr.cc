@@ -28,28 +28,39 @@ void CGA_Screen::setpos (int x, int y){
     IO_Port index_port = IO_Port(0x3d4);
     IO_Port data_port = IO_Port(0x3d5);
 
-    index_port.outb(15);
-    data_port.outb(x);
+    unsigned short cursor_address = x + y * ROW_SIZE;
 
     index_port.outb(14);
-    data_port.outb(y);
+    data_port.outb(cursor_address >> 8);
+
+    index_port.outb(15);
+    data_port.outb(cursor_address);
 }
 
 void CGA_Screen::getpos(int &x, int &y){
     IO_Port index_port = IO_Port(0x3d4);
     IO_Port data_port = IO_Port(0x3d5);
 
-    index_port.outb(15);
-    x = data_port.inb();
-
     index_port.outb(14);
-    y = data_port.inb();
+    int high = data_port.inb();
+
+    index_port.outb(15);
+    int low = data_port.inb();
+
+    unsigned short cursor_adress = high << 8 | low;
+
+    x = cursor_adress%ROW_SIZE;
+    y = cursor_adress/ROW_SIZE;
 }
 
 void CGA_Screen::print(char* text, int length, unsigned char attrib){
     int x,y;
     getpos(x,y);
     for(int i=0;i<length;i++){
+        if(x>ROW_SIZE){
+            x=0;
+            y++;
+        }
         show(x,y,*text,attrib);
         text++;
         x++;
