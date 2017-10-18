@@ -14,3 +14,15 @@
 /*****************************************************************************/
 
 #include "object/strbuf.h"
+
+void Stringbuffer::put(char c) {
+    if (i > BUFFER_SIZE) {
+        flush();
+        i = 0;
+    }
+    buffer[i] = c;
+    i++;
+}
+
+void Stringbuffer::flush() {
+}

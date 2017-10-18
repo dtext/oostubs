@@ -16,10 +16,18 @@
 #ifndef __strbuf_include__
 #define __strbuf_include__
 
+#define BUFFER_SIZE 4000
+
 class Stringbuffer {
 private:
     Stringbuffer(const Stringbuffer &copy); // Verhindere Kopieren
+    char buffer[BUFFER_SIZE];
+    int i = 0;
 
+public:
+    void put(char c);
+
+    virtual void flush() = 0;
 };
 
 #endif
