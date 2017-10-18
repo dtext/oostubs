@@ -17,11 +17,12 @@
 #include "object/o_stream.h"
 #include "machine/cgascr.h"
 
-class CGA_Stream : protected O_Stream, protected CGA_Screen {
+class CGA_Stream : public O_Stream, public CGA_Screen {
 private:
     CGA_Stream(CGA_Stream &copy); // Verhindere Kopieren
 
 public:
+    CGA_Stream() {}
     void flush();
 };
 
