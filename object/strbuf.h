@@ -27,6 +27,7 @@ protected:
     char buffer[BUFFER_SIZE];
 
 public:
+    Stringbuffer() {}
     void put(char c);
 
     virtual void flush() = 0;

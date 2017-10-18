@@ -20,10 +20,40 @@
 #define __o_stream_include__
 
 #include "object/strbuf.h"
+#include "strbuf.h"
 
 class O_Stream : protected Stringbuffer {
 private:
     O_Stream(const O_Stream &copy); // Verhindere Kopieren
+
+public:
+
+    O_Stream() {}
+
+    O_Stream &operator<<(unsigned char c);
+
+    O_Stream &operator<<(char c);
+
+    O_Stream &operator<<(unsigned short number);
+
+    O_Stream &operator<<(short number);
+
+    O_Stream &operator<<(unsigned int number);
+
+    O_Stream &operator<<(int number);
+
+    O_Stream &operator<<(unsigned long number);
+
+    O_Stream &operator<<(long number);
+
+    O_Stream &operator<<(void *pointer);
+
+    O_Stream &operator<<(char *text);
+
+    O_Stream &operator<<(O_Stream &(*fkt)(O_Stream &));
+
+    void flush() {}
+
 
 };
 
@@ -40,15 +70,15 @@ private:
 /* zu beeinflussen, z.B durch die Wahl des Zahlensystems.                    */
 /*---------------------------------------------------------------------------*/
 
-// ENDL: fuegt einen Zeilenumbruch in die Ausgabe ein.
+O_Stream &endl(O_Stream &os);
 
-// BIN: waehlt das binaere Zahlensystem aus.
+O_Stream &bin(O_Stream &os);
 
-// OCT: waehlt das oktale Zahlensystem aus.
+O_Stream &oct(O_Stream &os);
 
-// DEC: waehlt das dezimale Zahlensystem aus.
+O_Stream &dec(O_Stream &os);
 
-// HEX: waehlt das hexadezimale Zahlensystem aus.
+O_Stream &hex(O_Stream &os);
 
 #endif
 
