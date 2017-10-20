@@ -127,14 +127,60 @@ O_Stream &O_Stream::operator<<(long number) {
 
 }
 
-//O_Stream &O_Stream::operator<<(void *pointer) {
-//    return 0;
-//}
-//
-//O_Stream &O_Stream::operator<<(char *text) {
-//    return 0;
-//}
-//
+O_Stream &O_Stream::operator<<(void *pointer) {
+
+    long address = (long) pointer;
+    char buffer[6];
+
+    int i;
+    for (i = 0; address > 0; i++) {
+        short temp = address % 16;
+        switch (temp) {
+            case 10:
+                buffer[i] = 'A';
+                break;
+            case 11:
+                buffer[i] = 'B';
+                break;
+            case 12:
+                buffer[i] = 'C';
+                break;
+            case 13:
+                buffer[i] = 'D';
+                break;
+            case 14:
+                buffer[i] = 'E';
+                break;
+            case 15:
+                buffer[i] = 'F';
+                break;
+            default:
+                buffer[i] = temp + 48;
+        }
+        address /= 16;
+    }
+
+    *this << "0x";
+
+    for (; i >= 0; i--) {
+        this->put(buffer[i]);
+    }
+
+    return *this;
+
+}
+
+O_Stream &O_Stream::operator<<(char *text) {
+
+    while (*text != 0) {
+        this->put(*text);
+        text++;
+    }
+
+    return *this;
+
+}
+
 O_Stream &O_Stream::operator<<(O_Stream &(*fkt)(O_Stream &)) {
     return fkt(*this);
 }

@@ -16,7 +16,10 @@ int main() {
     */
 
     CGA_Stream stream;
-    stream << 'h' << 'a' << 'l' << endl;
+    int number = 123;
+    int* p = &number;
+    stream << number;
+    //stream << "Pointer of value " << number << " as hex: " << (void*) p << endl;
     stream.flush();
 
     return 0;
