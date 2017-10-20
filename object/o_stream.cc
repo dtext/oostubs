@@ -135,13 +135,14 @@ O_Stream &O_Stream::operator<<(long number) {
 //    return 0;
 //}
 //
-//O_Stream &O_Stream::operator<<(O_Stream &(*fkt)(O_Stream &)) {
-//    return 0;
-//}
+O_Stream &O_Stream::operator<<(O_Stream &(*fkt)(O_Stream &)) {
+    return fkt(*this);
+}
 //
-//O_Stream &endl(O_Stream &os) {
-//    return 0;
-//}
+O_Stream &endl(O_Stream &os) {
+    os << '\n';
+    return os;
+}
 //
 //O_Stream &bin(O_Stream &os) {
 //    return 0;
