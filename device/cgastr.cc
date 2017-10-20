@@ -13,7 +13,7 @@
 
 #include "device/cgastr.h"
 void CGA_Stream::flush() {
-    CGA_Screen::print(this->buffer, BUFFER_SIZE, 15);
+    CGA_Screen::print(this->buffer, get_length(), 15);
     for(int i = 0; i < BUFFER_SIZE; ++i) {
         buffer[i] = 0;
     }

@@ -24,5 +24,6 @@ void Stringbuffer::put(char c) {
     i++;
 }
 
-void Stringbuffer::flush() {
+int Stringbuffer::get_length(){
+    return i;
 }

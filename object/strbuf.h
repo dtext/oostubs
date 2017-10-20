@@ -29,6 +29,7 @@ protected:
 public:
     Stringbuffer() {}
     void put(char c);
+    int get_length();
 
     virtual void flush() = 0;
 };
