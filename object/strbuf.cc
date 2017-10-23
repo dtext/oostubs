@@ -24,6 +24,10 @@ void Stringbuffer::put(char c) {
     i++;
 }
 
-int Stringbuffer::get_length(){
+void Stringbuffer::setOutputFormat(OutputFormat newOutputFormat) {
+    currentOutputFormat = newOutputFormat;
+}
+
+int Stringbuffer::get_length() {
     return i;
 }

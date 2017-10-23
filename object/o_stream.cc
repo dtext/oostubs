@@ -189,19 +189,23 @@ O_Stream &endl(O_Stream &os) {
     os << '\n';
     return os;
 }
-//
-//O_Stream &bin(O_Stream &os) {
-//    return 0;
-//}
-//
-//O_Stream &oct(O_Stream &os) {
-//    return 0;
-//}
-//
-//O_Stream &dec(O_Stream &os) {
-//    return 0;
-//}
-//
-//O_Stream &hex(O_Stream &os) {
-//    return 0;
-//}
+
+O_Stream &bin(O_Stream &os) {
+    os.setOutputFormat(BIN);
+    return os;
+}
+
+O_Stream &oct(O_Stream &os) {
+    os.setOutputFormat(OCT);
+    return os;
+}
+
+O_Stream &dec(O_Stream &os) {
+    os.setOutputFormat(DEC);
+    return os;
+}
+
+O_Stream &hex(O_Stream &os) {
+    os.setOutputFormat(HEX);
+    return os;
+}

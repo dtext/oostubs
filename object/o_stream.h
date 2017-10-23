@@ -22,7 +22,7 @@
 #include "object/strbuf.h"
 #include "strbuf.h"
 
-class O_Stream : protected Stringbuffer {
+class O_Stream : public Stringbuffer {
 private:
     O_Stream(const O_Stream &copy); // Verhindere Kopieren
 

@@ -18,6 +18,10 @@
 
 #define BUFFER_SIZE 4000
 
+enum OutputFormat {
+    BIN, OCT, DEC, HEX
+};
+
 class Stringbuffer {
 private:
     Stringbuffer(const Stringbuffer &copy); // Verhindere Kopieren
@@ -27,9 +31,17 @@ protected:
     char buffer[BUFFER_SIZE];
 
 public:
-    Stringbuffer() {}
+    OutputFormat currentOutputFormat;
+
+    Stringbuffer() {
+        currentOutputFormat = DEC;
+    }
+
     void put(char c);
+
     int get_length();
+
+    void setOutputFormat(OutputFormat newOutputFormat);
 
     virtual void flush() = 0;
 };
