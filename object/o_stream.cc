@@ -18,7 +18,7 @@
 
 #define SHORT_DIGIT 5
 #define INT_DIGIT 10
-#define LONG_DIGIT 18
+#define LONG_DIGIT 20
 
 #include "object/o_stream.h"
 
@@ -36,14 +36,14 @@ O_Stream &O_Stream::operator<<(unsigned short number) {
 
     char buffer[SHORT_DIGIT];
     int i;
-    for (i = SHORT_DIGIT-1; i >= 0; i--) {
+    for (i = SHORT_DIGIT - 1; i >= 0; i--) {
         buffer[i] = (number % 10) + 48;
         number /= 10;
         if (number <= 0)
             break;
     }
 
-    for (; i <= SHORT_DIGIT; i++) {
+    for (; i < SHORT_DIGIT; i++) {
         this->put(buffer[i]);
     }
 
@@ -68,14 +68,14 @@ O_Stream &O_Stream::operator<<(unsigned int number) {
     char buffer[INT_DIGIT];
     int i;
 
-    for (i = INT_DIGIT-1; i >= 0; i--) {
+    for (i = INT_DIGIT - 1; i >= 0; i--) {
         buffer[i] = (number % 10) + 48;
         number /= 10;
         if (number <= 0)
             break;
     }
 
-    for (; i <= INT_DIGIT; i++) {
+    for (; i < INT_DIGIT; i++) {
         this->put(buffer[i]);
     }
 
@@ -100,14 +100,14 @@ O_Stream &O_Stream::operator<<(unsigned long number) {
     char buffer[LONG_DIGIT];
     int i;
 
-    for (i = LONG_DIGIT-1; i >= 0; i--) {
+    for (i = LONG_DIGIT - 1; i >= 0; i--) {
         buffer[i] = (number % 10) + 48;
         number /= 10;
         if (number <= 0)
             break;
     }
 
-    for (; i <= LONG_DIGIT; i++) {
+    for (; i < LONG_DIGIT; i++) {
         this->put(buffer[i]);
     }
 
@@ -184,7 +184,7 @@ O_Stream &O_Stream::operator<<(char *text) {
 O_Stream &O_Stream::operator<<(O_Stream &(*fkt)(O_Stream &)) {
     return fkt(*this);
 }
-//
+
 O_Stream &endl(O_Stream &os) {
     os << '\n';
     return os;
