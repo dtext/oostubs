@@ -22,17 +22,61 @@
 
 #include "object/o_stream.h"
 
+O_Stream &O_Stream::convert(unsigned long value) {
+
+    short numeralSystem = 10;
+    switch (currentOutputFormat) {
+        case BIN:
+            numeralSystem = 2;
+            break;
+        case OCT:
+            numeralSystem = 8;
+            break;
+        case DEC:
+            numeralSystem = 10;
+            break;
+        case HEX:
+            numeralSystem = 16;
+            break;
+        default:
+            break;
+    }
+
+    char buffer[100];
+    int i;
+    for (i = 0; value > 0; i++) {
+        short temp = value % numeralSystem;
+        if (temp >= 10)
+            buffer[i] = temp + 55;
+        else
+            buffer[i] = temp + 48;
+        value /= numeralSystem;
+    }
+
+    for (; i >= 0; i--) {
+        this->put(buffer[i]);
+    }
+
+    return *this;
+}
+
 O_Stream &O_Stream::operator<<(unsigned char c) {
+    if (currentOutputFormat != DEC)
+        return convert((unsigned long) c);
     this->put(c);
     return *this;
 }
 
+// TODO: Convert to unsigned
 O_Stream &O_Stream::operator<<(char c) {
     this->put(c);
     return *this;
 }
 
 O_Stream &O_Stream::operator<<(unsigned short number) {
+
+    if (currentOutputFormat != DEC)
+        return convert(number);
 
     char buffer[SHORT_DIGIT];
     int i;
@@ -64,6 +108,9 @@ O_Stream &O_Stream::operator<<(short number) {
 }
 
 O_Stream &O_Stream::operator<<(unsigned int number) {
+
+    if (currentOutputFormat != DEC)
+        return convert(number);
 
     char buffer[INT_DIGIT];
     int i;
@@ -97,6 +144,9 @@ O_Stream &O_Stream::operator<<(int number) {
 
 O_Stream &O_Stream::operator<<(unsigned long number) {
 
+    if (currentOutputFormat != DEC)
+        return convert(number);
+
     char buffer[LONG_DIGIT];
     int i;
 
@@ -128,46 +178,8 @@ O_Stream &O_Stream::operator<<(long number) {
 }
 
 O_Stream &O_Stream::operator<<(void *pointer) {
-
-    long address = (long) pointer;
-    char buffer[6];
-
-    int i;
-    for (i = 0; address > 0; i++) {
-        short temp = address % 16;
-        switch (temp) {
-            case 10:
-                buffer[i] = 'A';
-                break;
-            case 11:
-                buffer[i] = 'B';
-                break;
-            case 12:
-                buffer[i] = 'C';
-                break;
-            case 13:
-                buffer[i] = 'D';
-                break;
-            case 14:
-                buffer[i] = 'E';
-                break;
-            case 15:
-                buffer[i] = 'F';
-                break;
-            default:
-                buffer[i] = temp + 48;
-        }
-        address /= 16;
-    }
-
-    *this << "0x";
-
-    for (; i >= 0; i--) {
-        this->put(buffer[i]);
-    }
-
-    return *this;
-
+    OutputFormat tempOutputFormat = currentOutputFormat;
+    return *this << hex << (long) pointer << tempOutputFormat;
 }
 
 O_Stream &O_Stream::operator<<(char *text) {

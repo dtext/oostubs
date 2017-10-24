@@ -22,13 +22,22 @@
 #include "object/strbuf.h"
 #include "strbuf.h"
 
+enum OutputFormat {
+    BIN, OCT, DEC, HEX
+};
+
 class O_Stream : public Stringbuffer {
 private:
+    OutputFormat currentOutputFormat;
+
     O_Stream(const O_Stream &copy); // Verhindere Kopieren
 
-public:
+    O_Stream &convert(unsigned long value);
 
-    O_Stream() {}
+public:
+    O_Stream() {
+        currentOutputFormat = DEC;
+    }
 
     O_Stream &operator<<(unsigned char c);
 
@@ -54,6 +63,9 @@ public:
 
     void flush() {}
 
+    void setOutputFormat(OutputFormat currentOutputFormat) {
+        this->currentOutputFormat = currentOutputFormat;
+    }
 
 };
 
