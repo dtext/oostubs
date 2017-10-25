@@ -23,7 +23,7 @@
 #include "object/o_stream.h"
 
 O_Stream &O_Stream::convert(unsigned long value) {
-    char buffer[100];
+    char buffer[128];
     int i;
     for (i = 0; value > 0; i++) {
         short temp = value % currentOutputFormat;
@@ -103,8 +103,7 @@ O_Stream &O_Stream::operator<<(long number) {
 }
 
 O_Stream &O_Stream::operator<<(void *pointer) {
-    OutputFormat tempOutputFormat = currentOutputFormat;
-    return *this << hex << (long) pointer << tempOutputFormat;
+    return *this << hex << (long) pointer;
 }
 
 O_Stream &O_Stream::operator<<(char *text) {

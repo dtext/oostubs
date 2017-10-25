@@ -21,7 +21,7 @@
 class Stringbuffer {
 private:
     Stringbuffer(const Stringbuffer &copy); // Verhindere Kopieren
-    int i = 0;
+    int index = 0;
 
 protected:
     char buffer[BUFFER_SIZE];
@@ -31,7 +31,9 @@ public:
 
     void put(char c);
 
-    int get_length();
+    int getIndex();
+
+    void resetBuffer();
 
     virtual void flush() = 0;
 };

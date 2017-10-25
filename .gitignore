@@ -34,4 +34,4 @@
 
 build/
 cmake-build-debug/
-isofiles/system
+isofiles/boot/system

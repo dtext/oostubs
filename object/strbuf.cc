@@ -16,14 +16,17 @@
 #include "object/strbuf.h"
 
 void Stringbuffer::put(char c) {
-    if (i > BUFFER_SIZE) {
+    if (index > BUFFER_SIZE) {
         flush();
-        i = 0;
     }
-    buffer[i] = c;
-    i++;
+    buffer[index] = c;
+    ++index;
 }
 
-int Stringbuffer::get_length() {
-    return i;
+int Stringbuffer::getIndex() {
+    return index;
+}
+
+void Stringbuffer::resetBuffer() {
+    index = 0;
 }
