@@ -34,6 +34,7 @@ O_Stream &O_Stream::convert(unsigned long value) {
         value /= currentOutputFormat;
     }
 
+    i--;
     for (; i >= 0; i--) {
         this->put(buffer[i]);
     }
