@@ -23,34 +23,15 @@
 #include "object/o_stream.h"
 
 O_Stream &O_Stream::convert(unsigned long value) {
-
-    short numeralSystem = 10;
-    switch (currentOutputFormat) {
-        case BIN:
-            numeralSystem = 2;
-            break;
-        case OCT:
-            numeralSystem = 8;
-            break;
-        case DEC:
-            numeralSystem = 10;
-            break;
-        case HEX:
-            numeralSystem = 16;
-            break;
-        default:
-            break;
-    }
-
     char buffer[100];
     int i;
     for (i = 0; value > 0; i++) {
-        short temp = value % numeralSystem;
+        short temp = value % currentOutputFormat;
         if (temp >= 10)
             buffer[i] = temp + 55;
         else
             buffer[i] = temp + 48;
-        value /= numeralSystem;
+        value /= currentOutputFormat;
     }
 
     for (; i >= 0; i--) {
@@ -74,25 +55,7 @@ O_Stream &O_Stream::operator<<(char c) {
 }
 
 O_Stream &O_Stream::operator<<(unsigned short number) {
-
-    if (currentOutputFormat != DEC)
-        return convert(number);
-
-    char buffer[SHORT_DIGIT];
-    int i;
-    for (i = SHORT_DIGIT - 1; i >= 0; i--) {
-        buffer[i] = (number % 10) + 48;
-        number /= 10;
-        if (number <= 0)
-            break;
-    }
-
-    for (; i < SHORT_DIGIT; i++) {
-        this->put(buffer[i]);
-    }
-
-    return *this;
-
+    return convert(number);
 }
 
 O_Stream &O_Stream::operator<<(short number) {
@@ -108,26 +71,7 @@ O_Stream &O_Stream::operator<<(short number) {
 }
 
 O_Stream &O_Stream::operator<<(unsigned int number) {
-
-    if (currentOutputFormat != DEC)
-        return convert(number);
-
-    char buffer[INT_DIGIT];
-    int i;
-
-    for (i = INT_DIGIT - 1; i >= 0; i--) {
-        buffer[i] = (number % 10) + 48;
-        number /= 10;
-        if (number <= 0)
-            break;
-    }
-
-    for (; i < INT_DIGIT; i++) {
-        this->put(buffer[i]);
-    }
-
-    return *this;
-
+    return convert(number);
 }
 
 O_Stream &O_Stream::operator<<(int number) {
@@ -143,26 +87,7 @@ O_Stream &O_Stream::operator<<(int number) {
 }
 
 O_Stream &O_Stream::operator<<(unsigned long number) {
-
-    if (currentOutputFormat != DEC)
-        return convert(number);
-
-    char buffer[LONG_DIGIT];
-    int i;
-
-    for (i = LONG_DIGIT - 1; i >= 0; i--) {
-        buffer[i] = (number % 10) + 48;
-        number /= 10;
-        if (number <= 0)
-            break;
-    }
-
-    for (; i < LONG_DIGIT; i++) {
-        this->put(buffer[i]);
-    }
-
-    return *this;
-
+    return convert(number);
 }
 
 O_Stream &O_Stream::operator<<(long number) {

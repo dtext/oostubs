@@ -16,15 +16,15 @@
 #include "machine/io_port.h"
 
 /* Hier muesst ihr selbst Code vervollstaendigen */
-void CGA_Screen::show (int x, int y, char c, unsigned char attrib){
-    char *CGA_START = (char *)0xb8000;
+void CGA_Screen::show(int x, int y, char c, unsigned char attrib) {
+    char *CGA_START = (char *) 0xb8000;
     char *pos;
-    pos = CGA_START + 2*(x + y*80);
+    pos = CGA_START + 2 * (x + y * 80);
     *pos = c;
     *(pos + 1) = attrib;
 }
 
-void CGA_Screen::setpos (int x, int y){
+void CGA_Screen::setpos(int x, int y) {
     IO_Port index_port = IO_Port(0x3d4);
     IO_Port data_port = IO_Port(0x3d5);
 
@@ -37,7 +37,7 @@ void CGA_Screen::setpos (int x, int y){
     data_port.outb(cursor_address);
 }
 
-void CGA_Screen::getpos(int &x, int &y){
+void CGA_Screen::getpos(int &x, int &y) {
     IO_Port index_port = IO_Port(0x3d4);
     IO_Port data_port = IO_Port(0x3d5);
 
@@ -49,51 +49,52 @@ void CGA_Screen::getpos(int &x, int &y){
 
     unsigned short cursor_adress = high << 8 | low;
 
-    x = cursor_adress%ROW_SIZE;
-    y = cursor_adress/ROW_SIZE;
+    x = cursor_adress % ROW_SIZE;
+    y = cursor_adress / ROW_SIZE;
 }
 
-void CGA_Screen::print(char* text, int length, unsigned char attrib){
-    int x,y;
-    getpos(x,y);
-    for(int i=0;i<length;i++){
+void CGA_Screen::print(char *text, int length, unsigned char attrib) {
+    int x, y;
+    getpos(x, y);
+    for (int i = 0; i < length; i++) {
         //next line
-        if(x>ROW_SIZE || *text=='\n'){
-            x=0;
+        if (x > ROW_SIZE || *text == '\n') {
+            x = 0;
             //scrolling
-            if(y+1==ROW_COUNT){
+            if (y + 1 == ROW_COUNT) {
                 scroll();
-            }else{
+            } else {
                 y++;
             }
         }
-        if(*text!='\n')
-            show(x,y,*text,attrib);
+        if (*text != '\n') {
+            show(x, y, *text, attrib);
+            x++;
+        }
         text++;
-        x++;
     }
-    setpos(x,y);
+    setpos(x, y);
 }
 
-void CGA_Screen::get_character(int x, int y, char &c,char &attrib){
-    char *CGA_START = (char *)0xb8000;
+void CGA_Screen::get_character(int x, int y, char &c, char &attrib) {
+    char *CGA_START = (char *) 0xb8000;
     char *pos;
-    pos = CGA_START + 2*(x + y*80);
+    pos = CGA_START + 2 * (x + y * 80);
     c = *pos;
     attrib = *(pos + 1);
 }
 
-void CGA_Screen::scroll(){
+void CGA_Screen::scroll() {
     //move every character one row up
-    for(int y=0;y<ROW_COUNT-1;y++){
-        for(int x=0;x<ROW_SIZE;x++){
-            char c,attrib;
-            get_character(x,y+1,c,attrib);
-            show(x,y,c,attrib);
+    for (int y = 0; y < ROW_COUNT - 1; y++) {
+        for (int x = 0; x < ROW_SIZE; x++) {
+            char c, attrib;
+            get_character(x, y + 1, c, attrib);
+            show(x, y, c, attrib);
         }
     }
     //clear last row
-    for(int x;x<ROW_SIZE;x++){
-        show(x,ROW_COUNT-1,' ',15);
+    for (int x; x < ROW_SIZE; x++) {
+        show(x, ROW_COUNT - 1, ' ', 15);
     }
 }

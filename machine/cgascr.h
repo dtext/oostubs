@@ -17,13 +17,13 @@
 
 class CGA_Screen {
 private:
-
     static const int ROW_COUNT = 25;
     static const int ROW_SIZE = 80;
 
     CGA_Screen(const CGA_Screen &copy);
 
-    void get_character(int x,int y, char &character,char &attrib);
+    void get_character(int x, int y, char &character, char &attrib);
+
     void scroll();
 
 public:

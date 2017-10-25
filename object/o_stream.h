@@ -23,7 +23,7 @@
 #include "strbuf.h"
 
 enum OutputFormat {
-    BIN, OCT, DEC, HEX
+    BIN = 2, OCT = 8, DEC = 10, HEX = 16
 };
 
 class O_Stream : public Stringbuffer {
