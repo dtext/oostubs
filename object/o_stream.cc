@@ -43,16 +43,12 @@ O_Stream &O_Stream::convert(unsigned long value) {
 }
 
 O_Stream &O_Stream::operator<<(unsigned char c) {
-    if (currentOutputFormat != DEC)
-        return convert((unsigned long) c);
     this->put(c);
     return *this;
 }
 
-// TODO: Convert to unsigned
 O_Stream &O_Stream::operator<<(char c) {
-    this->put(c);
-    return *this;
+    return *this << (unsigned char) c;
 }
 
 O_Stream &O_Stream::operator<<(unsigned short number) {
