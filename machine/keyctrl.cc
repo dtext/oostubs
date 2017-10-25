@@ -251,7 +251,9 @@ Keyboard_Controller::Keyboard_Controller() :
 Key Keyboard_Controller::key_hit() {
     bool key_available = false;
     while (!key_available) {
-        key_available = (0x01 & ctrl_port.inb()) && !(0x20 & ctrl_port.inb());
+        // outb (0x01) is set if a new character is ready to be read in the output buffer
+        // auxb (0x20) is set if the character is sent by the mouse instead of the keyboard
+        key_available = (outb & ctrl_port.inb()) && !(auxb & ctrl_port.inb());
     }
 
     code = data_port.inb();
@@ -283,6 +285,19 @@ void Keyboard_Controller::reboot() {
     ctrl_port.outb(cpu_reset);        // Reset
 }
 
+void Keyboard_Controller::keyboard_configuration(int command, int data) {
+    data_port.outb(command);
+    while (data_port.inb() != kbd_reply::ack) {
+        // wait for ack
+    }
+
+    data_port.outb(data);
+
+    while (data_port.inb() != kbd_reply::ack) {
+        // wait for ack
+    }
+}
+
 // SET_REPEAT_RATE: Funktion zum Einstellen der Wiederholungsrate der
 //                  Tastatur. delay bestimmt, wie lange eine Taste ge-
 //                  drueckt werden muss, bevor die Wiederholung einsetzt.
@@ -293,17 +308,15 @@ void Keyboard_Controller::reboot() {
 //                  (sehr langsam).
 
 void Keyboard_Controller::set_repeat_rate(int speed, int delay) {
-/* Hier muesst ihr selbst Code vervollstaendigen */
-
-/* Hier muesst ihr selbst Code vervollstaendigen */
-
+    delay <<= 5;
+    keyboard_configuration(kbd_cmd::set_speed, speed | delay);
 }
 
 // SET_LED: setzt oder loescht die angegebene Leuchtdiode
 
 void Keyboard_Controller::set_led(char led, bool on) {
-/* Hier muesst ihr selbst Code vervollstaendigen */
-
-/* Hier muesst ihr selbst Code vervollstaendigen */
-
+    if (((led_status & led) && !on) || !(led_status & led) && on) {
+        led_status = led_status ^ led;
+    }
+    keyboard_configuration(kbd_cmd::set_led, led_status);
 }

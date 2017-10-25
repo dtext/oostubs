@@ -22,6 +22,7 @@ private:
     unsigned char prefix;
     Key gather;
     char leds;
+    int led_status = 0;
 
     // Benutzte Ports des Tastaturcontrollers
     const IO_Port ctrl_port; // Status- (R) u. Steuerregister (W)
@@ -78,6 +79,8 @@ private:
     // GET_ASCII_CODE: ermittelt anhand von Tabellen aus dem Scancode und
     //                 den gesetzten Modifier-Bits den ASCII Code der Taste.
     void get_ascii_code();
+
+    void keyboard_configuration(int command, int data);
 
 public:
 
