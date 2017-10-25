@@ -15,7 +15,6 @@
 #include "machine/cgascr.h"
 #include "machine/io_port.h"
 
-/* Hier muesst ihr selbst Code vervollstaendigen */
 void CGA_Screen::show(int x, int y, char c, unsigned char attrib) {
     char *CGA_START = (char *) 0xb8000;
     char *pos;
@@ -57,19 +56,20 @@ void CGA_Screen::print(char *text, int length, unsigned char attrib) {
     int x, y;
     getpos(x, y);
     for (int i = 0; i < length; i++) {
+        if (*text != '\n') {
+            show(x, y, *text, attrib);
+            x++;
+        }
         //next line
-        if (x > ROW_SIZE || *text == '\n') {
+        if (x == ROW_SIZE || *text == '\n') {
             x = 0;
             //scrolling
             if (y + 1 == ROW_COUNT) {
                 scroll();
-            } else {
+            }
+            else {
                 y++;
             }
-        }
-        if (*text != '\n') {
-            show(x, y, *text, attrib);
-            x++;
         }
         text++;
     }
@@ -94,7 +94,7 @@ void CGA_Screen::scroll() {
         }
     }
     //clear last row
-    for (int x; x < ROW_SIZE; x++) {
+    for (int x = 0; x < ROW_SIZE; x++) {
         show(x, ROW_COUNT - 1, ' ', 15);
     }
 }
