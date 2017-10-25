@@ -12,12 +12,21 @@
 
 #include "user/appl.h"
 #include "device/cgastr.h"
+#include "machine/keyctrl.h"
 
 /* GLOBALE VARIABLEN */
 
 extern CGA_Stream kout;
 
-
 void Application::action() {
-
+    CGA_Stream stream;
+    Keyboard_Controller keyboard;
+    Key myKey;
+    while (true) {
+        myKey = keyboard.key_hit();
+        if(myKey.valid()){
+            stream << myKey.ascii();
+            stream.flush();
+        }
+    }
 }
