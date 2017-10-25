@@ -249,12 +249,20 @@ Keyboard_Controller::Keyboard_Controller() :
 //          mit Key::valid () ueberprueft werden kann.
 
 Key Keyboard_Controller::key_hit() {
-    Key invalid;  // nicht explizit initialisierte Tasten sind ungueltig
-/* Hier muesst ihr selbst Code vervollstaendigen */
-/* Hier muesst ihr selbst Code vervollstaendigen */
+    bool key_available = false;
+    while (!key_available) {
+        key_available = (0x01 & ctrl_port.inb()) && !(0x20 & ctrl_port.inb());
+    }
 
-/* Hier muesst ihr selbst Code vervollstaendigen */
-    return invalid;
+    code = data_port.inb();
+    get_ascii_code();
+
+    if (key_decoded()) {
+        return gather;
+    } else {
+        Key invalid;
+        return invalid;
+    }
 }
 
 // REBOOT: Fuehrt einen Neustart des Rechners durch. Ja, beim PC macht

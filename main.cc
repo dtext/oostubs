@@ -1,5 +1,6 @@
 #include "machine/cgascr.h"
 #include "device/cgastr.h"
+#include "machine/keyctrl.h"
 
 int main() {
 
@@ -16,6 +17,14 @@ int main() {
     */
 
     CGA_Stream stream;
+    Keyboard_Controller keyboard;
+    Key myKey;
+    while (true) {
+        myKey = keyboard.key_hit();
+        stream << myKey.ascii();
+        stream.flush();
+    }
+
     int number = 123;
     int* p = &number;
     stream << number;
