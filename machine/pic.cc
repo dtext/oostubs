@@ -19,12 +19,20 @@
 #include "machine/pic.h"
 #include "machine/cpu.h"
 #include "machine/io_port.h"
+#include "device/cgastr.h"
 
 void PIC::allow(int interrupt_device){
     CPU cpu;
     cpu.enable_int();
-    char mask = 0b0000001;
-    mask <<= interrupt_device-1;
     IO_Port port(0x21);
-    port.outb(mask);
+    int int_mask = port.inb();
+    int_mask &= (1 << (interrupt_device-1));
+    port.outb(int_mask);
+}
+
+void PIC::forbid(int interrupt_device){
+    IO_Port port(0x21);
+    int int_mask = port.inb();
+    int_mask |= ~(1 << (interrupt_device-1));
+    port.outb(int_mask);
 }

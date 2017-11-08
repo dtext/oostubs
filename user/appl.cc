@@ -37,6 +37,7 @@ void Application::action() {
 
     PIC pic;
     pic.allow(PIC::keyboard);
+    //pic.forbid(PIC::keyboard);
 
     // read stuff from keyboard
     Key myKey;
