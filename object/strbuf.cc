@@ -16,7 +16,7 @@
 #include "object/strbuf.h"
 
 void Stringbuffer::put(char c) {
-    if (index > BUFFER_SIZE) {
+    if (index >= BUFFER_SIZE) {
         flush();
     }
     buffer[index] = c;

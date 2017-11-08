@@ -26,4 +26,6 @@ public:
     void flush();
 };
 
+static CGA_Stream cout;
+
 #endif
