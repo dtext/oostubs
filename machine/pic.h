@@ -17,13 +17,23 @@
 #ifndef __pic_include__
 #define __pic_include__
 
+enum {
+    timer    = 0,
+    keyboard = 1
+};
+
 class PIC
  {
 private:
     PIC(const PIC &copy); // Verhindere Kopieren
 public:
     PIC() {}
-/* Hier muesst ihr selbst Code vervollstaendigen */          
+
+    void allow (int interrupt_device);
+
+    void forbid (int interrupt_device);
+
+    bool is_masked (int interrupt_device);
  };
 
 #endif
