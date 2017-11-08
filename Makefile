@@ -21,7 +21,7 @@
 
 STARTUP_SOURCE = ./startup.asm
 CC_SOURCES = $(shell find . -name "*.cc")
-C_SOURCES = $(shell find . -name "*.c")
+C_SOURCES = $("")
 ASM_SOURCES = $(shell find ./machine -name "*.asm")
 
 # Einstellungen in Abhaengigkeit vom Generierungssystem:
