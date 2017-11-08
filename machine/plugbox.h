@@ -19,7 +19,14 @@ class Plugbox
  {
 private:
     Plugbox(const Plugbox &copy); // Verhindere Kopieren
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
+
+public:
+    static const timer = 32;
+    static const keyboard = 33;
+
+    Plugbox ();
+    void assign (unsigned int slot, Gate& gate);
+    Gate& report (unsigned int slot);
  };
 
 #endif

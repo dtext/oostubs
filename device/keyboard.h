@@ -15,20 +15,15 @@
 #include "guard/gate.h"
 #include "machine/key.h"
  
-class Keyboard 
-/* Hier muesst ihr selbst Code vervollstaendigen */         
+class Keyboard : Gate,Keyboard_Controller
 {        
 private:
-      Keyboard (const Keyboard &copy); // Verhindere Kopieren
-/* Hier muesst ihr selbst Code vervollstaendigen */                 
+    Keyboard (const Keyboard &copy); // Verhindere Kopieren
          
 public:
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
- 
-      // PLUGIN: 'Anstoepseln' der Tastatur. Ab sofort werden Tasten erkannt.
-      void plugin ();
-
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
+    // PLUGIN: 'Anstoepseln' der Tastatur. Ab sofort werden Tasten erkannt.
+    void plugin ();
+    void trigger ();
         
  };
 
