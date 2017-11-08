@@ -37,7 +37,17 @@ void Application::action() {
 
     PIC pic;
     pic.allow(PIC::keyboard);
-    //pic.forbid(PIC::keyboard);
+    pic.forbid(PIC::keyboard);
+    pic.allow(PIC::timer);
+    if(pic.is_masked(PIC::timer)){
+        cout << "timer is masked! " << endl;
+        cout.flush();
+    }
+    if(pic.is_masked(PIC::keyboard)){
+        cout << "keyboard is masked! " << endl;
+        cout.flush();
+    }
+
 
     // read stuff from keyboard
     Key myKey;

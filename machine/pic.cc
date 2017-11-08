@@ -21,18 +21,24 @@
 #include "machine/io_port.h"
 #include "device/cgastr.h"
 
-void PIC::allow(int interrupt_device){
+void PIC::allow(int interrupt_device) {
     CPU cpu;
     cpu.enable_int();
     IO_Port port(0x21);
     int int_mask = port.inb();
-    int_mask &= (1 << (interrupt_device-1));
+    int_mask &= ~(1 << interrupt_device);
     port.outb(int_mask);
 }
 
-void PIC::forbid(int interrupt_device){
+void PIC::forbid(int interrupt_device) {
     IO_Port port(0x21);
     int int_mask = port.inb();
-    int_mask |= ~(1 << (interrupt_device-1));
+    int_mask |= (1 << interrupt_device);
     port.outb(int_mask);
+}
+
+bool PIC::is_masked(int interrupt_device) {
+    IO_Port port(0x21);
+    int int_mask = port.inb();
+    return (int_mask >> interrupt_device) & 1;
 }
