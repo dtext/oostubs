@@ -13,6 +13,8 @@
 
 #include "device/cgastr.h"
 
+CGA_Stream cout;
+
 void CGA_Stream::flush() {
     CGA_Screen::print(this->buffer, this->getIndex(), 15);
     this->resetBuffer();

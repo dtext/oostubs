@@ -24,7 +24,7 @@ public:
     void trigger();
 };
 
-static Panic panic;
+extern Panic panic;
 
 #endif
 

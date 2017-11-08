@@ -12,6 +12,8 @@
 #include "device/panic.h"
 #include "machine/plugbox.h"
 
+Plugbox plugbox;
+
 Plugbox::Plugbox() {
     for (int slot = 0; slot < 64; ++slot) {
         gates[slot] = &panic;

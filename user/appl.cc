@@ -14,9 +14,12 @@
 #include "device/cgastr.h"
 #include "machine/keyctrl.h"
 #include "machine/pic.h"
-
+#include "device/keyboard.h"
+#include "machine/plugbox.h"
 
 void Application::action() {
+    Keyboard keyboard;
+    keyboard.plugin();
     CGA_Screen scr;
     while (1) {
         scr.show(79, 0, '_', 15);

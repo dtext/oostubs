@@ -14,17 +14,18 @@
 #include "machine/keyctrl.h"
 #include "guard/gate.h"
 #include "machine/key.h"
- 
-class Keyboard : Gate,Keyboard_Controller
-{        
+
+class Keyboard : Gate, Keyboard_Controller {
 private:
-    Keyboard (const Keyboard &copy); // Verhindere Kopieren
-         
+    Keyboard(const Keyboard &copy); // Verhindere Kopieren
+
 public:
-    // PLUGIN: 'Anstoepseln' der Tastatur. Ab sofort werden Tasten erkannt.
-    void plugin ();
-    void trigger ();
-        
- };
+    Keyboard() {}
+
+    void plugin();
+
+    void trigger();
+
+};
 
 #endif

@@ -13,11 +13,14 @@
 
 /* FUNKTIONEN */
 
+#include "machine/plugbox.h"
+#include "machine/keyctrl.h"
+
 extern "C" void guardian(unsigned int slot);
 
 /* GUARDIAN: Low-Level Interrupt-Behandlung. Die Funktion wird spaeter noch */
 /*           erweitert.                                                     */
 
 void guardian(unsigned int slot) {
-
+    plugbox.report(slot).trigger();
 }

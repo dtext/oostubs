@@ -15,6 +15,8 @@
 #include "device/panic.h"
 #include "device/cgastr.h"
 
+Panic panic;
+
 void Panic::trigger(){
     cout << "Kernel Panic :(";
     cout.flush();
