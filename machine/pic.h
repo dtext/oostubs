@@ -17,17 +17,17 @@
 #ifndef __pic_include__
 #define __pic_include__
 
-enum {
-    timer    = 0,
-    keyboard = 1
-};
-
 class PIC
  {
 private:
     PIC(const PIC &copy); // Verhindere Kopieren
 public:
     PIC() {}
+
+    enum {
+        timer    = 0,
+        keyboard = 1
+    };
 
     void allow (int interrupt_device);
 

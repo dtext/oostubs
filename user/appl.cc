@@ -13,6 +13,7 @@
 #include "user/appl.h"
 #include "device/cgastr.h"
 #include "machine/keyctrl.h"
+#include "machine/pic.h"
 
 /* GLOBALE VARIABLEN */
 
@@ -37,6 +38,9 @@ void Application::action() {
 
     kout << "Look! A very large number: " << l << '\n';
     kout.flush();
+
+    PIC pic;
+    pic.allow(PIC::keyboard);
 
     // read stuff from keyboard
     Key myKey;
