@@ -15,7 +15,7 @@
 
 #include "guard/gate.h"
 
-class Panic : Gate {
+class Panic : public Gate {
 private:
     Panic(const Panic &copy); // Verhindere Kopieren
 public:

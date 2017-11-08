@@ -10,17 +10,18 @@
 /* exception festlegen.                                                      */
 /*****************************************************************************/
 #include "device/panic.h"
+#include "machine/plugbox.h"
 
 Plugbox::Plugbox() {
     for (int slot = 0; slot < 64; ++slot) {
-        gates[slot] = panic;
+        gates[slot] = &panic;
     }
 }
 
 void Plugbox::assign(unsigned int slot, Gate &gate) {
-    gates[slot] = gate;
+    gates[slot] = &gate;
 }
 
 Gate &Plugbox::report(unsigned int slot) {
-    return gates[slot];
+    return *gates[slot];
 }

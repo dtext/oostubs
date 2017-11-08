@@ -18,11 +18,11 @@
 class Plugbox {
 private:
     Plugbox(const Plugbox &copy); // Verhindere Kopieren
-    Gate gates[64];
+    Gate* gates[64];
 
 public:
-    static const timer = 32;
-    static const keyboard = 33;
+    static const int timer = 32;
+    static const int keyboard = 33;
 
     Plugbox();
 
