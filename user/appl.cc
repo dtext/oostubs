@@ -14,12 +14,8 @@
 #include "device/cgastr.h"
 #include "machine/keyctrl.h"
 
-/* GLOBALE VARIABLEN */
-
-extern CGA_Stream kout;
 
 void Application::action() {
-    CGA_Stream stream, kout;
     Keyboard_Controller keyboard;
 
     int i = 768;
@@ -28,23 +24,23 @@ void Application::action() {
     unsigned long l = (unsigned long) -1;
 
     // print some numbers
-    kout << "Integer of value " << i
+    cout << "Integer of value " << i
          << " in hex: " << hex << i
          << ", octal: " << oct << i
          << " and binary: " << bin << i << '\n';
 
-    kout << "Negative Values work, too: " << dec << j << '\n';
+    cout << "Negative Values work, too: " << dec << j << '\n';
 
-    kout << "Look! A very large number: " << l << '\n';
-    kout.flush();
+    cout << "Look! A very large number: " << l << '\n';
+    cout.flush();
 
     // read stuff from keyboard
     Key myKey;
     while (true) {
         myKey = keyboard.key_hit();
         if(myKey.valid()) {
-            stream << myKey.ascii();
-            stream.flush();
+            cout << myKey.ascii();
+            cout.flush();
         }
     }
 }
