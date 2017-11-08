@@ -15,18 +15,20 @@
 
 #include "guard/gate.h"
 
-class Plugbox
- {
+class Plugbox {
 private:
     Plugbox(const Plugbox &copy); // Verhindere Kopieren
+    Gate gates[64];
 
 public:
     static const timer = 32;
     static const keyboard = 33;
 
-    Plugbox ();
-    void assign (unsigned int slot, Gate& gate);
-    Gate& report (unsigned int slot);
- };
+    Plugbox();
+
+    void assign(unsigned int slot, Gate &gate);
+
+    Gate &report(unsigned int slot);
+};
 
 #endif

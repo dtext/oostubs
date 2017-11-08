@@ -13,7 +13,9 @@
 /* INCLUDES */
 
 #include "device/panic.h"
+#include "device/cgastr.h"
 
 void Panic::trigger(){
-
+    cout << "Kernel Panic :(";
+    cout.flush();
 }

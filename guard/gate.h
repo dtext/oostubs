@@ -13,7 +13,7 @@
 
 class Gate {
 public:
-    virtual void trigger () = 0;
+    virtual void trigger() = 0;
 };
-                
+
 #endif
