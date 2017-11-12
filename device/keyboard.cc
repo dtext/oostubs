@@ -12,22 +12,19 @@
 #include "machine/plugbox.h"
 #include "machine/pic.h"
 #include "device/cgastr.h"
+#include "machine/cpu.h"
 
 void Keyboard::plugin() {
     plugbox.assign(plugbox.keyboard, *this);
-    PIC pic;
     pic.allow(pic.keyboard);
 }
 
 void Keyboard::trigger() {
     Key myKey;
-    Keyboard_Controller keyboard;
     myKey = keyboard.key_hit();
 
-    cout << myKey.ctrl()+1 << endl;
-    cout.flush();
     if (myKey.ascii() == 97 /*&& myKey.ctrl()*/ && myKey.alt()) {
-        //keyboard.reboot();
+        keyboard.reboot();
         cout << "reboot";
         cout.flush();
     }

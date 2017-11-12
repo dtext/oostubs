@@ -249,11 +249,12 @@ Keyboard_Controller::Keyboard_Controller() :
 //          mit Key::valid () ueberprueft werden kann.
 
 Key Keyboard_Controller::key_hit() {
-    bool key_available = false;
-    while (!key_available) {
-        // outb (0x01) is set if a new character is ready to be read in the output buffer
-        // auxb (0x20) is set if the character is sent by the mouse instead of the keyboard
-        key_available = (outb & ctrl_port.inb()) && !(auxb & ctrl_port.inb());
+    // outb (0x01) is set if a new character is ready to be read in the output buffer
+    // auxb (0x20) is set if the character is sent by the mouse instead of the keyboard
+    bool key_available = (outb & ctrl_port.inb()) && !(auxb & ctrl_port.inb());
+    if (!key_available) {
+        Key invalid;
+        return invalid;
     }
 
     code = data_port.inb();

@@ -50,4 +50,6 @@ CPU() {}
       }
  };
 
+extern CPU cpu;
+
 #endif

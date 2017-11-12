@@ -13,11 +13,13 @@
 #include "user/appl.h"
 #include "device/cgastr.h"
 #include "machine/keyctrl.h"
-#include "machine/pic.h"
 #include "device/keyboard.h"
 #include "machine/plugbox.h"
+#include "machine/cpu.h"
 
 void Application::action() {
+    CPU cpu;
+    cpu.enable_int();
     Keyboard keyboard;
     keyboard.plugin();
     CGA_Screen scr;
