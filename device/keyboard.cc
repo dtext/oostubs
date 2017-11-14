@@ -36,3 +36,5 @@ void Keyboard::trigger() {
         cout.setpos(x, y);
     }
 }
+
+Keyboard keyboard;

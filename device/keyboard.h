@@ -27,4 +27,6 @@ public:
 
 };
 
+extern Keyboard keyboard;
+
 #endif

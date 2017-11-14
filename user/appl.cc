@@ -16,9 +16,7 @@
 #include "machine/cpu.h"
 
 void Application::action() {
-    CPU cpu;
     cpu.enable_int();
-    Keyboard keyboard;
     keyboard.plugin();
     int z;
     while (1) {
