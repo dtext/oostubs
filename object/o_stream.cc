@@ -16,10 +16,6 @@
 /* fuer den Zeilenumbruch definiert.                                         */
 /*****************************************************************************/
 
-#define SHORT_DIGIT 5
-#define INT_DIGIT 10
-#define LONG_DIGIT 20
-
 #include "object/o_stream.h"
 
 O_Stream &O_Stream::convert(unsigned long value) {
@@ -57,7 +53,6 @@ O_Stream &O_Stream::operator<<(unsigned short number) {
 
 O_Stream &O_Stream::operator<<(short number) {
 
-    char buffer[SHORT_DIGIT];
     if (number < 0) {
         number *= -1;
         this->put('-');
@@ -73,7 +68,6 @@ O_Stream &O_Stream::operator<<(unsigned int number) {
 
 O_Stream &O_Stream::operator<<(int number) {
 
-    char buffer[INT_DIGIT];
     if (number < 0) {
         number *= -1;
         this->put('-');
@@ -89,7 +83,6 @@ O_Stream &O_Stream::operator<<(unsigned long number) {
 
 O_Stream &O_Stream::operator<<(long number) {
 
-    char buffer[LONG_DIGIT];
     if (number < 0) {
         number *= -1;
         this->put('-');

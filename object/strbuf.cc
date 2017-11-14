@@ -16,8 +16,11 @@
 #include "object/strbuf.h"
 
 void Stringbuffer::put(char c) {
+    //CPU cpu;
+    //cpu.disable_int();
     if (index >= BUFFER_SIZE) {
         flush();
+        //cpu.enable_int();
     }
     buffer[index] = c;
     ++index;

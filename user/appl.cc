@@ -12,13 +12,20 @@
 
 #include "user/appl.h"
 #include "device/cgastr.h"
-#include "machine/keyctrl.h"
-#include "machine/pic.h"
-
+#include "device/keyboard.h"
+#include "machine/cpu.h"
 
 void Application::action() {
-    CGA_Screen scr;
+    CPU cpu;
+    cpu.enable_int();
+    Keyboard keyboard;
+    keyboard.plugin();
+    int z;
     while (1) {
-        scr.show(79, 0, '_', 15);
+        cpu.disable_int();
+        cout.setpos(79, 0);
+        cout << z++;
+        cout.flush();
+        cpu.enable_int();
     }
 }

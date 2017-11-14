@@ -7,7 +7,7 @@
 /*---------------------------------------------------------------------------*/
 /* Standard Unterbrechungsbehandlung.                                        */
 /*****************************************************************************/
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
+/* Hier muesst ihr selbst Code vervollstaendigen */
 /* Hier muesst ihr selbst Code vervollstaendigen */
 
 /* INCLUDES */
@@ -15,7 +15,9 @@
 #include "device/panic.h"
 #include "device/cgastr.h"
 
-void Panic::trigger(){
+Panic panic;
+
+void Panic::trigger() {
     cout << "Kernel Panic :(";
     cout.flush();
 }

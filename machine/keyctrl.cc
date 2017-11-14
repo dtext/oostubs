@@ -11,6 +11,7 @@
 /* INCLUDES */
 
 #include "machine/keyctrl.h"
+#include "pic.h"
 
 /* STATIC MEMERS */
 
@@ -249,11 +250,12 @@ Keyboard_Controller::Keyboard_Controller() :
 //          mit Key::valid () ueberprueft werden kann.
 
 Key Keyboard_Controller::key_hit() {
-    bool key_available = false;
-    while (!key_available) {
-        // outb (0x01) is set if a new character is ready to be read in the output buffer
-        // auxb (0x20) is set if the character is sent by the mouse instead of the keyboard
-        key_available = (outb & ctrl_port.inb()) && !(auxb & ctrl_port.inb());
+    // outb (0x01) is set if a new character is ready to be read in the output buffer
+    // auxb (0x20) is set if the character is sent by the mouse instead of the keyboard
+    bool key_available = (outb & ctrl_port.inb()) && !(auxb & ctrl_port.inb());
+    if (!key_available) {
+        Key invalid;
+        return invalid;
     }
 
     code = data_port.inb();
@@ -286,6 +288,8 @@ void Keyboard_Controller::reboot() {
 }
 
 void Keyboard_Controller::keyboard_configuration(int command, int data) {
+    bool is_masked = pic.is_masked(pic.keyboard);
+    pic.forbid(pic.keyboard);
     data_port.outb(command);
     while (data_port.inb() != kbd_reply::ack) {
         // wait for ack
@@ -296,6 +300,8 @@ void Keyboard_Controller::keyboard_configuration(int command, int data) {
     while (data_port.inb() != kbd_reply::ack) {
         // wait for ack
     }
+    if (!is_masked)
+        pic.allow(pic.keyboard);
 }
 
 // SET_REPEAT_RATE: Funktion zum Einstellen der Wiederholungsrate der
@@ -315,7 +321,7 @@ void Keyboard_Controller::set_repeat_rate(int speed, int delay) {
 // SET_LED: setzt oder loescht die angegebene Leuchtdiode
 
 void Keyboard_Controller::set_led(char led, bool on) {
-    if (((led_status & led) && !on) || !(led_status & led) && on) {
+    if (((led_status & led) && !on) || (!(led_status & led) && on)) {
         led_status = led_status ^ led;
     }
     keyboard_configuration(kbd_cmd::set_led, led_status);

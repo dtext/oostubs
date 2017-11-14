@@ -17,13 +17,11 @@
 /* INCLUDES */
 
 #include "machine/pic.h"
-#include "machine/cpu.h"
 #include "machine/io_port.h"
-#include "device/cgastr.h"
+
+PIC pic;
 
 void PIC::allow(int interrupt_device) {
-    CPU cpu;
-    cpu.enable_int();
     IO_Port port(0x21);
     int int_mask = port.inb();
     int_mask &= ~(1 << interrupt_device);

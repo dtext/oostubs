@@ -18,7 +18,7 @@
 class Plugbox {
 private:
     Plugbox(const Plugbox &copy); // Verhindere Kopieren
-    Gate* gates[64];
+    Gate *gates[64];
 
 public:
     static const int timer = 32;
@@ -30,5 +30,7 @@ public:
 
     Gate &report(unsigned int slot);
 };
+
+extern Plugbox plugbox;
 
 #endif

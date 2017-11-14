@@ -17,7 +17,8 @@ private:
 
 public:
 
-    Application(){}
+    Application() {}
+
     void action();
 };
 

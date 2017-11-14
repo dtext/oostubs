@@ -13,7 +13,6 @@
 /*****************************************************************************/
 
 #include "machine/cgascr.h"
-#include "machine/io_port.h"
 
 void CGA_Screen::show(int x, int y, char c, unsigned char attrib) {
     char *CGA_START = (char *) 0xb8000;
@@ -66,8 +65,7 @@ void CGA_Screen::print(char *text, int length, unsigned char attrib) {
             //scrolling
             if (y + 1 == ROW_COUNT) {
                 scroll();
-            }
-            else {
+            } else {
                 y++;
             }
         }
