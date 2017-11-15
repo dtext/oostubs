@@ -15,7 +15,7 @@
 
 class Gate : public Chain {
 
-private:
+protected:
     bool inQueue = false;
 
 public:

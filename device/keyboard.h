@@ -24,8 +24,6 @@ public:
 
     void plugin();
 
-    void trigger();
-
     bool prologue();
 
     void epilogue();
