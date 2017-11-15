@@ -14,7 +14,8 @@
 #ifndef __Guard_include__
 #define __Guard_include__
 
-/* Hier muesst ihr selbst Code vervollstaendigen */
+#include "guard/gate.h"
+#include "guard/locker.h"
 
 class Guard : public Locker {
 private:

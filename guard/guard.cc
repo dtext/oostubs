@@ -11,6 +11,8 @@
 /* auf den kritischen Abschnitt zugreifen.                                   */
 /*****************************************************************************/
 
+#include "guard/guard.h"
+
 Guard guard;
 
 void Guard::leave() {

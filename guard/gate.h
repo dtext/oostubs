@@ -15,16 +15,21 @@
 
 class Gate : Chain {
 
-public:
-    virtual void trigger() = 0;
+private:
+    bool inQueue = false;
 
+public:
     virtual bool prologue() = 0;
 
     virtual void epilogue() {};
 
-    void queued(bool q);
+    void queued(bool q) {
+        inQueue = q;
+    }
 
-    bool queued();
+    bool queued() {
+        return inQueue;
+    }
 };
 
 #endif

@@ -21,5 +21,8 @@ extern "C" void guardian(unsigned int slot);
 /*           erweitert.                                                     */
 
 void guardian(unsigned int slot) {
-    plugbox.report(slot).trigger();
+    if (plugbox.report(slot).prologue()) {
+        plugbox.report(slot).epilogue(); // TODO
+    }
+
 }

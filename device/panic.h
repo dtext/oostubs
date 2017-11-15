@@ -21,8 +21,6 @@ private:
 public:
     Panic() {}
 
-    void trigger();
-
     bool prologue();
 };
 

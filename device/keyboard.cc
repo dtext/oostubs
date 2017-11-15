@@ -13,37 +13,30 @@
 #include "machine/pic.h"
 #include "device/cgastr.h"
 
+Keyboard keyboard;
+
 void Keyboard::plugin() {
     plugbox.assign(plugbox.keyboard, *this);
     pic.allow(pic.keyboard);
 }
 
-void Keyboard::trigger() {
-    Key myKey;
-    myKey = key_hit();
+bool Keyboard::prologue() {
+    press = key_hit();
+    return true;
+}
 
-    if (myKey.ascii() == 97 /*&& myKey.ctrl()*/ && myKey.alt()) {
+void Keyboard::epilogue() {
+    if (press.ascii() == 97 /*&& press.ctrl()*/ && press.alt()) {
         reboot();
         cout << "reboot";
         cout.flush();
     }
-    if (myKey.valid()) {
+    if (press.valid()) {
         int x, y;
         cout.getpos(x, y);
         cout.setpos(10, 10);
-        cout << myKey.ascii();
+        cout << press.ascii();
         cout.flush();
         cout.setpos(x, y);
     }
 }
-
-bool Keyboard::prologue() {
-    //TODO
-    return false;
-}
-
-void Keyboard::epilogue() {
-    //TODO
-}
-
-Keyboard keyboard;

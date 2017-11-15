@@ -18,7 +18,10 @@
 class Locker {
 private:
     Locker(const Locker &copy); // Verhindere Kopieren
+    bool locked;
 public:
+    Locker() { locked = false; };
+
     void enter();
 
     void leave();

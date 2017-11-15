@@ -14,17 +14,15 @@
 
 #include "device/panic.h"
 #include "device/cgastr.h"
+#include "machine/cpu.h"
 
 Panic panic;
 
-void Panic::trigger() {
+bool Panic::prologue() {
     cout << "Kernel Panic :(";
     cout.flush();
-}
-
-bool Panic::prologue() {
-    //TODO
-    return false;
+    cpu.halt();
+    return false; // this is here to avoid compiler errors
 }
 
 
