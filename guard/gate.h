@@ -13,7 +13,7 @@
 
 #include "object/chain.h"
 
-class Gate : Chain {
+class Gate : public Chain {
 
 private:
     bool inQueue = false;

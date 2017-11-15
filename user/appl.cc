@@ -14,6 +14,7 @@
 #include "device/cgastr.h"
 #include "device/keyboard.h"
 #include "machine/cpu.h"
+#include "guard/secure.h"
 
 void Application::action() {
     cpu.enable_int();

@@ -14,6 +14,8 @@
 /* FUNKTIONEN */
 
 #include "machine/plugbox.h"
+#include "guard/guard.h"
+#include "device/cgastr.h"
 
 extern "C" void guardian(unsigned int slot);
 
@@ -21,8 +23,9 @@ extern "C" void guardian(unsigned int slot);
 /*           erweitert.                                                     */
 
 void guardian(unsigned int slot) {
-    if (plugbox.report(slot).prologue()) {
-        plugbox.report(slot).epilogue(); // TODO
+    Gate *g = &plugbox.report(slot);  // obtain device driver
+    if (g->prologue()) {              // execute its prologue
+        guard.relay(g);               // if need be: queue its epilog
     }
 
 }

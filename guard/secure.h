@@ -17,10 +17,9 @@
 
 class Secure {
 public:
-    Secure();
+    Secure() { /* TODO */ }
 
-    ~Secure();
+    ~Secure() { /* TODO */ }
 };
-/* Hier muesst ihr selbst Code vervollstaendigen */
 
 #endif

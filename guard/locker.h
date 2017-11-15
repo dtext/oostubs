@@ -18,6 +18,7 @@
 class Locker {
 private:
     Locker(const Locker &copy); // Verhindere Kopieren
+protected:
     bool locked;
 public:
     Locker() { locked = false; };
