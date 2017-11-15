@@ -29,7 +29,7 @@ void Guard::leave() {
     while (1) {
         cpu.disable_int();
         if (g == 0) {
-            leave();
+            retne();
             cpu.enable_int();
             break;
         }

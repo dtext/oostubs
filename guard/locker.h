@@ -15,6 +15,10 @@
 #ifndef __Locker_include__
 #define __Locker_include__
 
+#include "machine/cpu.h"
+#include "device/cgastr.h"
+#include "device/panic.h"
+
 class Locker {
 private:
     Locker(const Locker &copy); // Verhindere Kopieren
@@ -23,11 +27,27 @@ protected:
 public:
     Locker() { locked = false; };
 
-    void enter(); //TODO implementation
+    inline void enter() {
+        if (locked) {
+            cout << "Locker error: Second call of enter" << endl;
+            cout.flush();
+            panic.prologue();
+        }
+        locked = true;
+    }
 
-    void retne(); //TODO implementation
+    inline void retne() {
+        if (!locked) {
+            cout << "Locker error: Second call of retne" << endl;
+            cout.flush();
+            panic.prologue();
+        }
+        locked = false;
+    }
 
-    bool avail(); //TODO implementation
+    inline bool avail() {
+        return !locked;
+    }
 };
 
 #endif
