@@ -24,8 +24,6 @@ public:
     void trigger();
 
     bool prologue();
-
-    void epilogue();
 };
 
 extern Panic panic;

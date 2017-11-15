@@ -27,7 +27,4 @@ bool Panic::prologue() {
     return false;
 }
 
-void Panic::epilogue() {
-    //TODO
-}
 
