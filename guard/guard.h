@@ -14,15 +14,19 @@
 #ifndef __Guard_include__
 #define __Guard_include__
 
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
-        
-class Guard : public Locker
- {
+/* Hier muesst ihr selbst Code vervollstaendigen */
+
+class Guard : public Locker {
 private:
-    Guard (const Guard &copy); // Verhindere Kopieren
+    Guard(const Guard &copy); // Verhindere Kopieren
 public:
-    Guard () {}
-/* Hier muesst ihr selbst Code vervollstaendigen */          
- };
+    Guard() {}
+
+    void leave();
+
+    void relay(Gate *gate);
+};
+
+extern Guard guard;
 
 #endif

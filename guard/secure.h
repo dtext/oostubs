@@ -15,6 +15,12 @@
 #ifndef __Secure_include__
 #define __Secure_include__
 
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
+class Secure {
+public:
+    Secure();
+
+    ~Secure();
+};
+/* Hier muesst ihr selbst Code vervollstaendigen */
 
 #endif
