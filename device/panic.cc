@@ -21,3 +21,13 @@ void Panic::trigger() {
     cout << "Kernel Panic :(";
     cout.flush();
 }
+
+bool Panic::prologue() {
+    //TODO
+    return false;
+}
+
+void Panic::epilogue() {
+    //TODO
+}
+

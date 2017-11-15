@@ -37,4 +37,13 @@ void Keyboard::trigger() {
     }
 }
 
+bool Keyboard::prologue() {
+    //TODO
+    return false;
+}
+
+void Keyboard::epilogue() {
+    //TODO
+}
+
 Keyboard keyboard;
