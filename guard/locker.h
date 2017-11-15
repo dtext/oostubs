@@ -23,13 +23,11 @@ protected:
 public:
     Locker() { locked = false; };
 
-    void enter();
+    void enter(); //TODO implementation
 
-    void leave();
+    void retne(); //TODO implementation
 
-    void retne();
-
-    bool avail();
+    bool avail(); //TODO implementation
 };
 
 #endif

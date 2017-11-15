@@ -21,8 +21,11 @@ void Application::action() {
     keyboard.plugin();
     int z;
     while (1) {
-        cout.setpos(79, 0);
-        cout << z++;
-        cout.flush();
+        {
+            Secure section;
+            cout.setpos(79, 0);
+            cout << z++;
+            cout.flush();
+        }
     }
 }

@@ -29,7 +29,7 @@ void Guard::leave() {
     while (1) {
         cpu.disable_int();
         if (g == 0) {
-            locked = false;
+            leave();
             cpu.enable_int();
             break;
         }
@@ -48,8 +48,8 @@ void Guard::relay(Gate *gate) {
     // TODO ist das Locking-Verhalten hier richtig?
 
     cpu.disable_int();
-    if (!locked) {
-        locked = true;
+    if (avail()) {
+        enter();
         cpu.enable_int();
         gate->epilogue();
         leave();

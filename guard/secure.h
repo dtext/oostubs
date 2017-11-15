@@ -15,11 +15,13 @@
 #ifndef __Secure_include__
 #define __Secure_include__
 
+#include "guard/guard.h"
+
 class Secure {
 public:
-    Secure() { /* TODO */ }
+    Secure() { guard.enter(); }
 
-    ~Secure() { /* TODO */ }
+    ~Secure() { guard.leave(); }
 };
 
 #endif
