@@ -20,10 +20,8 @@ void Application::action() {
     keyboard.plugin();
     int z;
     while (1) {
-        cpu.disable_int();
         cout.setpos(79, 0);
         cout << z++;
         cout.flush();
-        cpu.enable_int();
     }
 }
