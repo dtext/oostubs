@@ -116,6 +116,11 @@ O_Stream &endl(O_Stream &os) {
     return os;
 }
 
+O_Stream &flush(O_Stream &os) {
+    os.flush();
+    return os;
+}
+
 O_Stream &bin(O_Stream &os) {
     os.setOutputFormat(BIN);
     return os;

@@ -19,8 +19,7 @@
 Panic panic;
 
 bool Panic::prologue() {
-    cout << "Kernel Panic :(";
-    cout.flush();
+    cout << "Kernel Panic :(" << flush;
     cpu.halt();
     return false; // this is here to avoid compiler errors
 }

@@ -24,8 +24,7 @@ void Application::action() {
         {
             Secure section;
             cout.setpos(79, 0);
-            cout << z++;
-            cout.flush();
+            cout << z++ << flush;
         }
     }
 }

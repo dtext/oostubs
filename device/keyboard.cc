@@ -28,15 +28,13 @@ bool Keyboard::prologue() {
 void Keyboard::epilogue() {
     if (press.ascii() == 97 /*&& press.ctrl()*/ && press.alt()) {
         reboot();
-        cout << "reboot";
-        cout.flush();
+        cout << "reboot" << flush;
     }
     if (press.valid()) {
         int x, y;
         cout.getpos(x, y);
         cout.setpos(10, 10);
-        cout << press.ascii();
-        cout.flush();
+        cout << press.ascii() << flush;
         cout.setpos(x, y);
     }
 }

@@ -84,6 +84,8 @@ public:
 
 O_Stream &endl(O_Stream &os);
 
+O_Stream &flush(O_Stream &os);
+
 O_Stream &bin(O_Stream &os);
 
 O_Stream &oct(O_Stream &os);
