@@ -290,16 +290,26 @@ void Keyboard_Controller::reboot() {
 void Keyboard_Controller::keyboard_configuration(int command, int data) {
     bool is_masked = pic.is_masked(pic.keyboard);
     pic.forbid(pic.keyboard);
-    data_port.outb(command);
-    while (data_port.inb() != kbd_reply::ack) {
-        // wait for ack
-    }
 
+    // wait until input buffer is empty
+    while ((ctrl_port.inb() & inpb) != 0);
+
+    // send command
+    data_port.outb(command);
+
+    while((ctrl_port.inb() & outb) == 0);
+
+    //wait for ack
+    while (data_port.inb() != kbd_reply::ack);
+
+    // send data
     data_port.outb(data);
 
-    while (data_port.inb() != kbd_reply::ack) {
-        // wait for ack
-    }
+    while((ctrl_port.inb() & outb) == 0);
+
+    // wait for ack
+    while (data_port.inb() != kbd_reply::ack);
+
     if (!is_masked)
         pic.allow(pic.keyboard);
 }
