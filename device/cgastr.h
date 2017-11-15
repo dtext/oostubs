@@ -23,6 +23,7 @@ private:
 
 public:
     CGA_Stream() {}
+
     void flush();
 };
 

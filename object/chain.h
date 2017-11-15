@@ -14,15 +14,15 @@
 #ifndef __chain_include__
 #define __chain_include__
 
-class Chain
- {
+class Chain {
 private:
-      Chain(const Chain &copy); // Verhindere Kopieren
+    Chain(const Chain &copy); // Verhindere Kopieren
 
 public:
-      Chain() {}
-      Chain* next;
- };
+    Chain() {}
+
+    Chain *next;
+};
 
 #endif
 

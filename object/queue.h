@@ -16,21 +16,26 @@
 
 #include "object/chain.h"
 
-class Queue
- {
+class Queue {
 private:
-      Queue(const Queue &copy); // Verhindere Kopieren
+    Queue(const Queue &copy); // Verhindere Kopieren
 
 protected:
-      Chain* head;
-      Chain** tail;
+    Chain *head;
+    Chain **tail;
 
 public:
-      Queue () { head = 0; tail = &head; }
-      void enqueue (Chain* item);
-      Chain* dequeue ();
-      void remove (Chain*);
- };
+    Queue() {
+        head = 0;
+        tail = &head;
+    }
+
+    void enqueue(Chain *item);
+
+    Chain *dequeue();
+
+    void remove(Chain *);
+};
 
 #endif
 

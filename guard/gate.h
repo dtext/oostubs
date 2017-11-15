@@ -20,7 +20,7 @@ public:
 
     virtual bool prologue() = 0;
 
-    virtual void epilogue(){};
+    virtual void epilogue() {};
 
     void queued(bool q);
 
