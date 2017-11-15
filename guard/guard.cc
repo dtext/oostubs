@@ -45,8 +45,6 @@ void Guard::leave() {
 }
 
 void Guard::relay(Gate *gate) {
-    // TODO ist das Locking-Verhalten hier richtig?
-
     cpu.disable_int();
     if (avail()) {
         enter();

@@ -27,7 +27,8 @@ bool Keyboard::prologue() {
 }
 
 void Keyboard::epilogue() {
-    if (press.ascii() == 97 /*&& press.ctrl()*/ && press.alt()) {
+    //TODO: Fix CTRL+ALT+DEL
+    if (press.ascii() == 127 && press.ctrl() && press.alt()) {
         reboot();
         cout << "reboot" << flush;
     }
