@@ -22,7 +22,6 @@ void Keyboard::plugin() {
 
 bool Keyboard::prologue() {
     press = key_hit();
-    inQueue = true;
     return true;
 }
 
