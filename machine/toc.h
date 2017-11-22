@@ -29,14 +29,19 @@
 // TOC: ("thread of control")
 //
 struct toc {
-	void *rbx;
-	void *r12;
-	void *r13;
-	void *r14;
-	void *r15;
-	void *rbp;
-	void *rsp;
-	char fpu[108]; // Optional: 108 Byte extended CPU state (MMX, SSE, ...)
+    void *rbx;
+    void *r12;
+    void *r13;
+    void *r14;
+    void *r15;
+    void *rbp;
+    void *rsp;
+    char fpu[108]; // Optional: 108 Byte extended CPU state (MMX, SSE, ...)
 };
 
+void toc_settle(struct toc *regs, void *tos, void (*kickoff)(void *));
+
+extern "C" void toc_go (struct toc* regs, void *coroutine);
+
+extern "C" void toc_switch (struct toc* regs_now, struct toc* regs_then, void *coroutine);
 #endif
