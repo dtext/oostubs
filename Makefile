@@ -21,7 +21,7 @@
 
 STARTUP_SOURCE = ./startup.asm
 CC_SOURCES = $(shell find . -name "*.cc")
-C_SOURCES = $("")
+C_SOURCES = $(shell find . -name "*.c" -not -path "*cmake-build-debug*")
 ASM_SOURCES = $(shell find ./machine -name "*.asm")
 
 # Einstellungen in Abhaengigkeit vom Generierungssystem:
