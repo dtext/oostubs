@@ -22,14 +22,14 @@ toc my_other_toc;
 
 void my_function(void* a) {
     cout << "Foo" << flush;
-    toc_switch(&my_toc,&my_other_toc, nullptr);
+    toc_switch(&my_toc,&my_other_toc, 0);
     cout << "Ende" << flush;
     while(1) {}
 }
 
 void my_other_function(void* a) {
     cout << "Bar" << flush;
-    toc_switch(&my_other_toc, &my_toc, nullptr);
+    toc_switch(&my_other_toc, &my_toc, 0);
 }
 
 void Application::action() {
@@ -46,5 +46,5 @@ void Application::action() {
 
     toc_settle(&my_toc , (void*)(my_stack + 4096), my_function);
     toc_settle(&my_other_toc, (void*)(my_other_stack + 4096), my_other_function);
-    toc_go(&my_toc, nullptr);
+    toc_go(&my_toc, 0);
 }

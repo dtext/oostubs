@@ -20,6 +20,8 @@
 class Dispatcher {
 private:
     Dispatcher(const Dispatcher &copy); // Verhindere Kopieren
+
+protected:
     Coroutine* activeCoroutine;
 
 public:

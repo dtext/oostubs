@@ -16,7 +16,7 @@ void Scheduler::ready(Entrant &that) {
 
 void Scheduler::schedule() {
     activeCoroutine = (Coroutine *) readyList.dequeue();
-    active().go();
+    // active().go(); todo
 }
 
 void Scheduler::exit() {
