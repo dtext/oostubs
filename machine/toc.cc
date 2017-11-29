@@ -16,7 +16,9 @@
 
 // TOC_SETTLE: bereitet den Kontext der Koroutine fuer den ersten
 //             Aufruf vor.
-void toc_settle (struct toc* regs, void* tos, void (*kickoff)(void*))
- {
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
- }
+void toc_settle(struct toc *regs, void *tos, void (*kickoff)(void *)) {
+    void** stack_pointer = (void**)tos;
+    stack_pointer--;
+    *stack_pointer = (void*)kickoff;
+    regs->rsp = stack_pointer;
+}

@@ -8,7 +8,27 @@
 /* Implementierung des Schedulers.                                           */
 /*****************************************************************************/
 
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
- 
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
+#include "thread/scheduler.h"
+
+void Scheduler::ready(Entrant &that) {
+    readyList.enqueue(&that);
+}
+
+void Scheduler::schedule() {
+    activeCoroutine = (Coroutine *) readyList.dequeue();
+    active().go();
+}
+
+void Scheduler::exit() {
+    // todo
+}
+
+void Scheduler::kill(Entrant &that) {
+    readyList.remove(&that);
+}
+
+void Scheduler::resume() {
+    // todo
+    readyList.enqueue((Entrant *) active());
+}
+

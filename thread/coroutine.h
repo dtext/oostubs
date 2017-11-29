@@ -21,11 +21,15 @@
 
 #include "machine/toc.h"
 
-class Coroutine
- {
+class Coroutine {
 private:
-      Coroutine(const Coroutine &copy); // Verhindere Kopieren
-/* Hier muesst ihr selbst Code vervollstaendigen */     
- };
+    Coroutine(const Coroutine &copy); // Verhindere Kopieren
+    toc thread_of_control;
+public:
+    Coroutine (void* tos);
+    void go ();
+    void resume (Coroutine& next);
+    virtual void action () = 0;
+};
 
 #endif
