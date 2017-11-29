@@ -11,5 +11,12 @@
 /* erste Koroutine gestartet, alle weiteren Kontextwechsel werden mit        */
 /* dispatch() ausgeloest. active() liefert den life Pointer zurueck.         */
 /*****************************************************************************/
+#include "thread/dispatch.h"
 
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
+void Dispatcher::go(Coroutine &first) {
+    // todo
+}
+
+void Dispatcher::dispatch(Coroutine &next) {
+    // todo
+}
