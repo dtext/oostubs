@@ -21,6 +21,12 @@
 
 #include "machine/toc.h"
 
+extern "C" {
+void toc_go (struct toc* regs, void *coroutine);
+void toc_switch (struct toc* regs_now, struct toc* regs_then, void *coroutine);
+void toc_settle(struct toc *regs, void *tos, void (*kickoff)(void *));
+}
+
 class Coroutine {
 private:
     Coroutine(const Coroutine &copy); // Verhindere Kopieren

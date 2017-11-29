@@ -39,11 +39,4 @@ struct toc {
     char fpu[108]; // Optional: 108 Byte extended CPU state (MMX, SSE, ...)
 };
 
-extern "C" {
-void toc_go (struct toc* regs, void *coroutine);
-
-void toc_switch (struct toc* regs_now, struct toc* regs_then, void *coroutine);
-}
-
-void toc_settle(struct toc *regs, void *tos, void (*kickoff)(void *));
 #endif
