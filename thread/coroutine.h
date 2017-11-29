@@ -24,7 +24,7 @@
 class Coroutine {
 private:
     Coroutine(const Coroutine &copy); // Verhindere Kopieren
-
+    toc thread_of_control;
 public:
     Coroutine (void* tos);
     void go ();
