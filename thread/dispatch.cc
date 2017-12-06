@@ -14,9 +14,12 @@
 #include "thread/dispatch.h"
 
 void Dispatcher::go(Coroutine &first) {
-    // todo
+    activeCoroutine = &first;
+    activeCoroutine->go();
 }
 
 void Dispatcher::dispatch(Coroutine &next) {
-    // todo
+    Coroutine *old = activeCoroutine;
+    activeCoroutine = &next;
+    old->resume(*activeCoroutine);
 }
