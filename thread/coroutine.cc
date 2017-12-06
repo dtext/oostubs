@@ -15,17 +15,18 @@
 /*****************************************************************************/
 
 #include "thread/coroutine.h"
+#include "thread/kickoff.h"
 
 // Funktionen, die auf der C- oder Assembler-Ebene implementiert werden,
 // muessen als extern "C" deklariert werden, da sie nicht dem Name-Mangeling
 // von C++ entsprechen.
 
 Coroutine::Coroutine(void *tos) {
-
+    toc_settle(&thread_of_control,tos,kickoff);
 }
 
 void Coroutine::go() {
-
+    toc_go(&thread_of_control, this);
 }
 
 void Coroutine::resume(Coroutine &next) {

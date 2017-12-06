@@ -48,7 +48,6 @@ ret
 ;                              void *coroutine);
 
 toc_switch:
-; Hier muesst ihr selbst Code vervollstaendigen 
 ; regs_now in rdi
 ; regs_then in rsi
 ; coroutine in rdx

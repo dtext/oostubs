@@ -14,6 +14,8 @@
 #include <thread/coroutine.h>
 #include "user/appl.h"
 #include "device/cgastr.h"
+#include "my_coroutine.h"
+#include "my_other_coroutine.h"
 
 char my_stack[4096];
 char my_other_stack[4096];
@@ -44,7 +46,13 @@ void Application::action() {
         }
     }*/
 
-    toc_settle(&my_toc, (void *) (my_stack + 4096), my_function);
+    /*toc_settle(&my_toc, (void *) (my_stack + 4096), my_function);
     toc_settle(&my_other_toc, (void *) (my_other_stack + 4096), my_other_function);
-    toc_go(&my_toc, 0);
+    toc_go(&my_toc, 0);*/
+
+    MyOtherCoroutine myOtherCoroutine(my_other_stack + 4096);
+    MyCoroutine myCoroutine(my_stack + 4096, &myOtherCoroutine);
+    myOtherCoroutine.setCoroutine(&myCoroutine);
+
+    myCoroutine.go();
 }
