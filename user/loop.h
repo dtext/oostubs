@@ -13,6 +13,6 @@
 #ifndef __loop_include__
 #define __loop_include__
 
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
- 
+/* Hier muesst ihr selbst Code vervollstaendigen */
+
 #endif

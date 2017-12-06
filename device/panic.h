@@ -18,13 +18,13 @@
 class Panic : public Gate {
 private:
     Panic(const Panic &copy); // Verhindere Kopieren
-    char* error;
+    char *error;
 public:
     Panic() {}
 
     bool prologue();
 
-    void setError(char* error) {
+    void setError(char *error) {
         this->error = error;
     }
 };

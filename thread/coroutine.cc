@@ -20,12 +20,14 @@
 // muessen als extern "C" deklariert werden, da sie nicht dem Name-Mangeling
 // von C++ entsprechen.
 
-Coroutine::Coroutine (void* tos){
+Coroutine::Coroutine(void *tos) {
 
 }
-void Coroutine::go (){
+
+void Coroutine::go() {
 
 }
-void Coroutine::resume (Coroutine& next){
-    toc_switch(&thread_of_control, &(next.thread_of_control),&next);
+
+void Coroutine::resume(Coroutine &next) {
+    toc_switch(&thread_of_control, &(next.thread_of_control), &next);
 }

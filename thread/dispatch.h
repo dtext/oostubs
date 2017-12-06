@@ -22,18 +22,18 @@ private:
     Dispatcher(const Dispatcher &copy); // Verhindere Kopieren
 
 protected:
-    Coroutine* activeCoroutine;
+    Coroutine *activeCoroutine;
 
 public:
     Dispatcher() {
         activeCoroutine = 0;
     }
 
-    void go(Coroutine& first);
+    void go(Coroutine &first);
 
-    void dispatch(Coroutine& next);
+    void dispatch(Coroutine &next);
 
-    Coroutine* active() {
+    Coroutine *active() {
         return activeCoroutine;
     }
 };

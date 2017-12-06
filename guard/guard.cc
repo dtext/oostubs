@@ -45,7 +45,7 @@ void Guard::relay(Gate *gate) {
         enter();
         gate->epilogue();
         leave();
-    } else if(!gate->queued()){
+    } else if (!gate->queued()) {
         q.enqueue(gate);
         gate->queued(true);
     }

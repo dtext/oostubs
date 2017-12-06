@@ -20,10 +20,14 @@ private:
     Scheduler(const Scheduler &copy); // Verhindere Kopieren
     Queue readyList;
 public:
-    void ready(Entrant& that);
+    void ready(Entrant &that);
+
     void schedule();
+
     void exit();
-    void kill(Entrant& that);
+
+    void kill(Entrant &that);
+
     void resume();
 };
 

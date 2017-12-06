@@ -297,7 +297,7 @@ void Keyboard_Controller::keyboard_configuration(int command, int data) {
     // send command
     data_port.outb(command);
 
-    while((ctrl_port.inb() & outb) == 0);
+    while ((ctrl_port.inb() & outb) == 0);
 
     //wait for ack
     while (data_port.inb() != kbd_reply::ack);
@@ -305,7 +305,7 @@ void Keyboard_Controller::keyboard_configuration(int command, int data) {
     // send data
     data_port.outb(data);
 
-    while((ctrl_port.inb() & outb) == 0);
+    while ((ctrl_port.inb() & outb) == 0);
 
     // wait for ack
     while (data_port.inb() != kbd_reply::ack);
