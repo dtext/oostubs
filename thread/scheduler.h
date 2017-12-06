@@ -20,15 +20,30 @@ private:
     Scheduler(const Scheduler &copy); // Verhindere Kopieren
     Queue readyList;
 public:
+    Scheduler() {}
+
+    /**
+     * Enqueues a process
+     * @param that New process
+     */
     void ready(Entrant &that);
 
     void schedule();
 
     void exit();
 
+    /**
+     * Kills another process
+     * @param that Process to kill
+     */
     void kill(Entrant &that);
 
+    /**
+     * Stops current process and switches to the next one
+     */
     void resume();
 };
+
+extern Scheduler scheduler;
 
 #endif

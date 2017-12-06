@@ -12,8 +12,6 @@
 /*****************************************************************************/
 
 #include "guard/guard.h"
-#include "machine/cpu.h"
-#include "device/cgastr.h"
 
 Guard guard;
 

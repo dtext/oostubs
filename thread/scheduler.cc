@@ -10,25 +10,28 @@
 
 #include "thread/scheduler.h"
 
+Scheduler scheduler;
+
 void Scheduler::ready(Entrant &that) {
     readyList.enqueue(&that);
 }
 
 void Scheduler::schedule() {
-    activeCoroutine = (Coroutine *) readyList.dequeue();
-    // active().go(); todo
+    go(static_cast<Entrant &>(*(readyList.dequeue())));
 }
 
 void Scheduler::exit() {
-    // todo
+    dispatch(static_cast<Entrant &>(*(readyList.dequeue())));
 }
 
 void Scheduler::kill(Entrant &that) {
-    readyList.remove(&that);
+    if (&that == active())
+        exit();
+    else
+        readyList.remove(&that);
 }
 
 void Scheduler::resume() {
-    // todo
     readyList.enqueue((Entrant *) active());
+    dispatch(static_cast<Entrant &>(*(readyList.dequeue())));
 }
-
