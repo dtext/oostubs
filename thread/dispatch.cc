@@ -13,11 +13,19 @@
 /*****************************************************************************/
 #include "thread/dispatch.h"
 
+/**
+ * Makes first the active coroutine and calls its go() function
+ * @param first the first coroutine in the system
+ */
 void Dispatcher::go(Coroutine &first) {
     activeCoroutine = &first;
     activeCoroutine->go();
 }
 
+/**
+ * Switches from the active coroutine to the next coroutine.
+ * @param next the coroutine to switch to
+ */
 void Dispatcher::dispatch(Coroutine &next) {
     Coroutine *old = activeCoroutine;
     activeCoroutine = &next;
