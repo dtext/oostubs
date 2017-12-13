@@ -11,7 +11,7 @@
 #ifndef __guarded_scheduler_include__
 #define __guarded_scheduler_include__
 
-/* Hier muesst ihr selbst Code vervollstaendigen */
+#include "thread.h"
 
 class Guarded_Scheduler
 /* Hier muesst ihr selbst Code vervollstaendigen */
@@ -20,7 +20,14 @@ private:
     Guarded_Scheduler(const Guarded_Scheduler &copy); // Verhindere Kopieren
 public:
     Guarded_Scheduler() {}
-/* Hier muesst ihr selbst Code vervollstaendigen */
+
+    void ready(Thread &that);
+
+    void exit();
+
+    void kill(Thread &that);
+
+    void resume();
 };
 
 #endif
