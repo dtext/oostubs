@@ -22,7 +22,7 @@
 // von C++ entsprechen.
 
 Coroutine::Coroutine(void *tos) {
-    toc_settle(&thread_of_control,tos,kickoff);
+    toc_settle(&thread_of_control, tos, kickoff);
 }
 
 void Coroutine::go() {

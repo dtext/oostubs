@@ -16,5 +16,5 @@
 #include "thread/kickoff.h"
 
 void kickoff(void *coroutine) {
-    ((Coroutine *)coroutine)->action();
+    ((Coroutine *) coroutine)->action();
 }

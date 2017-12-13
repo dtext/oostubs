@@ -11,19 +11,20 @@
 #ifndef __pit_include__
 #define __pit_include__
 
-class PIT
- {
+class PIT {
 private:
     PIT(const PIT &copy); // Verhindere Kopieren
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
+/* Hier muesst ihr selbst Code vervollstaendigen */
 public:
-    PIT (int us) {
-      interval (us);
+    PIT(int us) {
+        interval(us);
     }
-    int interval () {
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
+
+    int interval() {
+/* Hier muesst ihr selbst Code vervollstaendigen */
     }
-    void interval (int us);
+
+    void interval(int us);
 };
 
 #endif
