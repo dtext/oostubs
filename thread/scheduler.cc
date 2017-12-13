@@ -10,8 +10,6 @@
 
 #include "thread/scheduler.h"
 
-Scheduler scheduler;
-
 void Scheduler::ready(Entrant &that) {
     readyList.enqueue(&that);
 }
@@ -33,5 +31,6 @@ void Scheduler::kill(Entrant &that) {
 
 void Scheduler::resume() {
     readyList.enqueue((Entrant *) active());
+
     dispatch(static_cast<Entrant &>(*(readyList.dequeue())));
 }

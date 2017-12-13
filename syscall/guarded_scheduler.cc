@@ -8,22 +8,27 @@
 /* Systemaufrufschnittstelle zum Scheduler.                                  */
 /*****************************************************************************/
 
+#include "guarded_scheduler.h"
+#include "guard/secure.h"
+
+Guarded_Scheduler scheduler;
+
 void Guarded_Scheduler::ready(Thread &that) {
     Secure section;
-    scheduler.ready(that);
+    Scheduler::ready(that);
 }
 
 void Guarded_Scheduler::exit() {
     Secure section;
-    scheduler.exit();
+    Scheduler::exit();
 }
 
 void Guarded_Scheduler::kill(Thread &that) {
     Secure section;
-    scheduler.kill(that);
+    Scheduler::kill(that);
 }
 
 void Guarded_Scheduler::resume() {
-    Secure section;
-    scheduler.resume();
+    guard.enter(); // TODO
+    Scheduler::resume();
 }

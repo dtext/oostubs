@@ -11,6 +11,7 @@
 /* erste Koroutine gestartet, alle weiteren Kontextwechsel werden mit        */
 /* dispatch() ausgeloest. active() liefert den life Pointer zurueck.         */
 /*****************************************************************************/
+#include <guard/guard.h>
 #include "thread/dispatch.h"
 
 void Dispatcher::go(Coroutine &first) {
@@ -21,5 +22,6 @@ void Dispatcher::go(Coroutine &first) {
 void Dispatcher::dispatch(Coroutine &next) {
     Coroutine *old = activeCoroutine;
     activeCoroutine = &next;
+    guard.retne(); // TODO
     old->resume(*activeCoroutine);
 }

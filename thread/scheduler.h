@@ -44,6 +44,4 @@ public:
     void resume();
 };
 
-extern Scheduler scheduler;
-
 #endif

@@ -7,9 +7,20 @@
 /*---------------------------------------------------------------------------*/
 /*****************************************************************************/
 
-/* Hier muesst ihr selbst Code vervollstaendigen */
-/* Hier muesst ihr selbst Code vervollstaendigen */
+#include <machine/plugbox.h>
+#include <machine/pic.h>
+#include <syscall/guarded_scheduler.h>
+#include "watch.h"
 
-/* Hier muesst ihr selbst Code vervollstaendigen */
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
+void Watch::windup() {
+    plugbox.assign(plugbox.timer, *this);
+    pic.allow(pic.timer);
+}
 
+bool Watch::prologue() {
+    return true;
+}
+
+void Watch::epilogue() {
+    scheduler.resume();
+}

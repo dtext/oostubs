@@ -20,17 +20,17 @@ private:
     Watch(const Watch &copy); // Verhindere Kopieren
 public:
     // WATCH: Initialisiert die Uhr.
-    Watch(int us) : PIT(us) {}
+    Watch(int microseconds) : PIT(microseconds) {}
 
     // WINDUP: "zieht die Uhr auf". Danach laeuft sie los und loest in
     //         regelmaessigen Abstaenden Unterbrechungen aus.
     void windup();
 
     // PROLOGUE: Prologue der Uhrenunterbrechung
-    bool prologue();
+    bool prologue() override;
 
     // EPILOGUE: Epilogue der Uhrenunterbrechung
-    void epilogue();
+    void epilogue() override;
 };
 
 #endif

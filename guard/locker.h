@@ -29,7 +29,7 @@ public:
 
     inline void enter() {
         if (locked) {
-            cout << "Locker error: Second call of enter" << endl << flush;
+            panic.setError(const_cast<char *>("Locker error: Second call of enter"));
             panic.prologue();
         }
         locked = true;
@@ -37,7 +37,7 @@ public:
 
     inline void retne() {
         if (!locked) {
-            cout << "Locker error: Second call of retne" << endl << flush;
+            panic.setError(const_cast<char *>("Locker error: Second call of retne"));
             panic.prologue();
         }
         locked = false;

@@ -11,8 +11,8 @@
 /* INCLUDES */
 
 #include <thread/coroutine.h>
+#include <syscall/guarded_scheduler.h>
 #include "user/appl.h"
-#include "application1.h"
 
 void Application::action() {
     /*cpu.enable_int();

@@ -1,11 +1,10 @@
 #include <thread/coroutine.h>
 #include <device/cgastr.h>
 #include <thread/entrant.h>
-#include <thread/scheduler.h>
 
-class Application2 : public Entrant {
+class Application2 : public Thread {
 public:
-    Application2(void *tos) : Entrant(tos) {}
+    Application2(void *tos) : Thread(tos) {}
 
     void action() override {
         cout << "Bar" << flush;

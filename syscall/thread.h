@@ -13,15 +13,11 @@
 
 #include "thread/entrant.h"
 
-/* Hier muesst ihr selbst Code vervollstaendigen */
-
-class Thread : public Entrant
-/* Hier muesst ihr selbst Code vervollstaendigen */
-
-{
+class Thread : public Entrant {
+public:
+    Thread(void *tos) : Entrant(tos) {};
 private:
     Thread(const Thread &copy); // Verhindere Kopieren
-    Thread(void *tos) : Entrant(tos) {};
 
 };
 
