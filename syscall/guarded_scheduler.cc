@@ -8,10 +8,6 @@
 /* Systemaufrufschnittstelle zum Scheduler.                                  */
 /*****************************************************************************/
 
-#include "guarded_scheduler.h"
-#include "thread/scheduler.h"
-#include "guard/secure.h"
-
 void Guarded_Scheduler::ready(Thread &that) {
     Secure section;
     scheduler.ready(that);
