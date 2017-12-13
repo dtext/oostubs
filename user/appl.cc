@@ -30,7 +30,5 @@ void Application::action() {
     toc_settle(&my_other_toc, (void *) (my_other_stack + 4096), my_other_function);
     toc_go(&my_toc, 0);*/
 
-    scheduler.resume();
-    scheduler.resume();
     while (true) {}
 }

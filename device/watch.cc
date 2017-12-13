@@ -22,5 +22,5 @@ bool Watch::prologue() {
 }
 
 void Watch::epilogue() {
-    scheduler.resume();
+    scheduler.Scheduler::resume();
 }

@@ -29,6 +29,6 @@ void Guarded_Scheduler::kill(Thread &that) {
 }
 
 void Guarded_Scheduler::resume() {
-    guard.enter(); // TODO
+    Secure section;
     Scheduler::resume();
 }

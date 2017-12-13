@@ -10,7 +10,6 @@ public:
 
     void action() override {
         cout << "Foo" << flush;
-        scheduler.resume();
         cout << "Ende" << flush;
         scheduler.exit();
     }

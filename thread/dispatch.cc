@@ -22,6 +22,5 @@ void Dispatcher::go(Coroutine &first) {
 void Dispatcher::dispatch(Coroutine &next) {
     Coroutine *old = activeCoroutine;
     activeCoroutine = &next;
-    guard.retne(); // TODO
     old->resume(*activeCoroutine);
 }

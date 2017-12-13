@@ -12,9 +12,11 @@
 /* Ruecksprungadresse interpretiert werden und der Rechner abstuerzen.       */
 /*****************************************************************************/
 
+#include <guard/guard.h>
 #include "thread/coroutine.h"
 #include "thread/kickoff.h"
 
 void kickoff(void *coroutine) {
+    guard.leave();
     ((Coroutine *) coroutine)->action();
 }
