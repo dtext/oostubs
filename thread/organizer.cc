@@ -19,13 +19,13 @@ void Organizer::block(Customer &customer, Waitingroom &waitingroom) {
 }
 
 void Organizer::wakeup(Customer &customer) {
-    customer.waiting_in(nullptr);
+    customer.waiting_in(0);
     ready(customer);
 }
 
 void Organizer::kill(Customer &that) {
     Waitingroom *w = that.waiting_in();
-    if (w != nullptr) {
+    if (w != 0) {
         w->remove(&that);
     }else{
         Scheduler::kill(that);
