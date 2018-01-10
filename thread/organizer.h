@@ -13,6 +13,8 @@
 #define __organizer_include__
 
 #include <thread/scheduler.h>
+#include <thread/customer.h>
+#include <meeting/waitingroom.h>
 
 class Organizer : public Scheduler {
 private:
