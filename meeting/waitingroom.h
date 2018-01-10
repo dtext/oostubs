@@ -14,15 +14,17 @@
 #include "object/queue.h"
 #include "thread/customer.h"
 
-class Customer; // Forward declaration
-
-class Waitingroom
-        : public Queue {
+class Waitingroom : public Queue {
 private:
-    Waitingroom(const Waitingroom &copy); // Verhindere Kopieren
+    Waitingroom(const Waitingroom &copy);
+
 public:
     Waitingroom() {}
-/* Hier muesst ihr selbst Code vervollstaendigen */
+
+    virtual ~Waitingroom();
+
+    virtual void remove(Customer *customer);
+
 };
 
 #endif
