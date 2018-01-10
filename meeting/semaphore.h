@@ -11,14 +11,24 @@
 #ifndef __Semaphore_include__
 #define __Semaphore_include__
 
-/* Hier muesst ihr selbst Code vervollstaendigen */
+#include "waitingroom.h"
 
-class Semaphore
-/* Hier muesst ihr selbst Code vervollstaendigen */
-{
+class Semaphore : public Waitingroom {
 private:
     Semaphore(const Semaphore &copy); // Verhindere Kopieren
-/* Hier muesst ihr selbst Code vervollstaendigen */
+
+    int c;
+public:
+    Semaphore(int c);
+
+
+    inline void p();
+
+    inline void v();
+
+    void wait();
+
+    void signal();
 };
 
 #endif
