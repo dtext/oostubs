@@ -9,3 +9,6 @@
 /*****************************************************************************/
 
 /* Hier muesst ihr selbst Code vervollstaendigen */ 
+#include "guarded_organizer.h"
+
+Guarded_Organizer organizer;

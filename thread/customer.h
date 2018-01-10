@@ -16,7 +16,7 @@
 
 /* Hier muesst ihr selbst Code vervollstaendigen */
 
-class Customer : Entrant {
+class Customer : public Entrant {
 
 private:
     Customer(const Customer &copy); // Verhindere Kopieren

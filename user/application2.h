@@ -8,6 +8,6 @@ public:
 
     void action() override {
         cout << "Bar" << flush;
-        scheduler.exit();
+        organizer.exit();
     }
 };

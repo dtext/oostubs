@@ -9,7 +9,7 @@
 
 #include <machine/plugbox.h>
 #include <machine/pic.h>
-#include <syscall/guarded_scheduler.h>
+#include <syscall/guarded_organizer.h>
 #include "watch.h"
 
 void Watch::windup() {
@@ -22,5 +22,5 @@ bool Watch::prologue() {
 }
 
 void Watch::epilogue() {
-    scheduler.Scheduler::resume();
+    organizer.Scheduler::resume();
 }
