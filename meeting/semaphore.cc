@@ -20,15 +20,15 @@ void Semaphore::p() {
     if (this->c > 0) {
         c--;
     } else {
-        Customer customer = organizer.active();
-        organizer.Organizer::block(customer, *this);
+        Customer *customer = (Customer *) organizer.active();
+        organizer.Organizer::block(*customer, *this);
     }
 }
 
 void Semaphore::v() {
     if (head) {
-        Customer customer = dequeue();
-        organizer.Organizer::wakeup(customer);
+        Customer *customer = (Customer *) dequeue();
+        organizer.Organizer::wakeup(*customer);
     } else {
         c++;
     }
