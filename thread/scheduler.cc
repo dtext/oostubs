@@ -9,6 +9,7 @@
 /*****************************************************************************/
 
 #include "thread/scheduler.h"
+#include "guard/guard.h"
 
 void Scheduler::ready(Entrant &that) {
     readyList.enqueue(&that);
@@ -19,7 +20,14 @@ void Scheduler::schedule() {
 }
 
 void Scheduler::exit() {
-    dispatch(static_cast<Entrant &>(*(readyList.dequeue())));
+    Entrant *next = 0;
+    while(!next){
+        next = static_cast<Entrant*>(readyList.dequeue());
+        guard.leave();
+        cpu.idle();
+        guard.enter();
+    }
+    dispatch(*next);
 }
 
 void Scheduler::kill(Entrant &that) {
