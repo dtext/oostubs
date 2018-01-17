@@ -10,9 +10,10 @@ public:
     }
 
     void action() override {
+        coutSemaphore.wait();
         cout << "Foo" << flush;
         cout << "Ende" << flush;
-
+        coutSemaphore.signal();
         keyboard.plugin();
         organizer.exit();
     }

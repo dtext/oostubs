@@ -7,7 +7,9 @@ public:
     Application2(void *tos) : Thread(tos) {}
 
     void action() override {
+        coutSemaphore.wait();
         cout << "Bar" << flush;
+        coutSemaphore.signal();
         organizer.exit();
     }
 };

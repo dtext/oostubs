@@ -13,6 +13,7 @@
 
 #include <thread/entrant.h>
 #include <syscall/thread.h>
+#include <syscall/guarded_semaphore.h>
 
 class Application : public Thread {
 private:
@@ -24,5 +25,7 @@ public:
 
     void action();
 };
+
+extern Guarded_Semaphore coutSemaphore;
 
 #endif

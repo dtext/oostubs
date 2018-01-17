@@ -17,6 +17,8 @@
 #include <device/cgastr.h>
 #include "user/appl.h"
 
+Guarded_Semaphore coutSemaphore(1);
+
 void Application::action() {
     /*cpu.enable_int();
     keyboard.plugin();
