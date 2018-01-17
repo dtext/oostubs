@@ -20,7 +20,7 @@ void Scheduler::schedule() {
 }
 
 void Scheduler::exit() {
-    Entrant *next = 0;
+    Entrant *next = static_cast<Entrant*>(readyList.dequeue());
     while(!next){
         next = static_cast<Entrant*>(readyList.dequeue());
         guard.leave();
