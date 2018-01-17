@@ -12,6 +12,9 @@
 
 #include <thread/coroutine.h>
 #include <syscall/guarded_scheduler.h>
+#include <machine/key.h>
+#include <syscall/guarded_keyboard.h>
+#include <device/cgastr.h>
 #include "user/appl.h"
 
 void Application::action() {
@@ -30,5 +33,8 @@ void Application::action() {
     toc_settle(&my_other_toc, (void *) (my_other_stack + 4096), my_other_function);
     toc_go(&my_toc, 0);*/
 
-    while (true) {}
+    while (true) {
+        Key pressed = keyboard.getkey();
+        cout << pressed.ascii() << flush;
+    }
 }

@@ -14,12 +14,6 @@ public:
         cout << "Ende" << flush;
 
         keyboard.plugin();
-
-        while (true) {
-            Key pressed = keyboard.getkey();
-            cout << pressed.ascii() << flush;
-        }
-
         organizer.exit();
     }
 };
