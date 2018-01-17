@@ -15,7 +15,7 @@
 void Organizer::block(Customer &customer, Waitingroom &waitingroom) {
     waitingroom.enqueue(&customer);
     customer.waiting_in(&waitingroom);
-    resume();
+    exit();
 }
 
 void Organizer::wakeup(Customer &customer) {
