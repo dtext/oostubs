@@ -14,16 +14,40 @@
 #ifndef __Bell_include__
 #define __Bell_include__
 
-/* Hier muesst ihr selbst Code vervollstaendigen */
+#include <object/chain.h>
 
-class Bell
-/* Hier muesst ihr selbst Code vervollstaendigen */
-{
+class Bell : public Chain {
 private:
-    Bell(const Bell &copy); // Verhindere Kopieren
+    Bell(const Bell &copy);
+
 public:
     Bell() {}
-/* Hier muesst ihr selbst Code vervollstaendigen */
+
+    /**
+     * @return current wait counter value
+     */
+    int wait();
+
+    /**
+     * Set wait counter to value
+     * @param value value to set the counter to
+     */
+    void wait(int value);
+
+    /**
+     * Decrement the counter value
+     */
+    void tick();
+
+    /**
+     * @return whether or not the counter ran down
+     */
+    bool run_down();
+
+    /**
+     * Called by Bellringer when counter ran down
+     */
+    virtual void ring() = 0;
 
 };
 
