@@ -13,16 +13,34 @@
 #ifndef __Bellringer_include__
 #define __Bellringer_include__
 
-/* Hier muesst ihr selbst Code vervollstaendigen */
 
-class Bellringer
-/* Hier muesst ihr selbst Code vervollstaendigen */
-{
+#include <object/list.h>
+#include "bell.h"
+
+class Bellringer : public List {
 private:
-    Bellringer(const Bellringer &copy); // Verhindere Kopieren
+    Bellringer(const Bellringer &copy);
 public:
     Bellringer() {}
-/* Hier muesst ihr selbst Code vervollstaendigen */
+
+    /**
+     * Rings all bells that need to be rung.
+     */
+    void check();
+
+    /**
+     * Adds a new bell that will be rung after the specified amount of ticks.
+     * @param bell the Bell object
+     * @param ticks the amount of ticks to wait
+     */
+    void job(Bell *bell, int ticks);
+
+    /**
+     * Removes a bell from the job list.
+     * @param bell the bell to be removed
+     */
+    void cancel(Bell *bell);
+
 };
 
 #endif
