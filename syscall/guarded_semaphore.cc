@@ -8,4 +8,16 @@
 /* Systemaufrufschnittstelle zum Semaphor.                                   */
 /*****************************************************************************/
 
-/* Hier muesst ihr selbst Code vervollstaendigen */ 
+#include "guard/secure.h"
+#include "meeting/semaphore.h"
+#include "guarded_semaphore.h"
+
+void Guarded_Semaphore::p() {
+    Secure section;
+    Semaphore::p();
+}
+
+void Guarded_Semaphore::v() {
+    Secure section;
+    Semaphore::v();
+}
