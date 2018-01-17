@@ -33,11 +33,3 @@ void Semaphore::v() {
         c++;
     }
 }
-
-inline void Semaphore::wait() {
-    p();
-}
-
-inline void Semaphore::signal() {
-    v();
-}

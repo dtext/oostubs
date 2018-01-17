@@ -22,13 +22,13 @@ public:
     Semaphore(int c);
 
 
-    inline void p();
+    void p();
 
-    inline void v();
+    void v();
 
-    void wait();
+    inline void wait() { p(); }
 
-    void signal();
+    inline void signal() { v(); }
 };
 
 #endif
