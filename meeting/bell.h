@@ -19,6 +19,8 @@
 class Bell : public Chain {
 private:
     Bell(const Bell &copy);
+    int counter;
+    bool counter_zero;
 
 public:
     Bell() {}
@@ -26,23 +28,34 @@ public:
     /**
      * @return current wait counter value
      */
-    int wait();
+    int wait() {
+        return counter;
+    }
 
     /**
      * Set wait counter to value
      * @param value value to set the counter to
      */
-    void wait(int value);
+    void wait(int value) {
+        counter = value;
+    }
 
     /**
      * Decrement the counter value
      */
-    void tick();
+    void tick() {
+        if (!run_down()) {
+            --counter;
+            counter_zero = (counter <= 0);
+        }
+    }
 
     /**
      * @return whether or not the counter ran down
      */
-    bool run_down();
+    bool run_down() {
+        return counter_zero;
+    }
 
     /**
      * Called by Bellringer when counter ran down
