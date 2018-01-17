@@ -15,9 +15,9 @@
 Bellringer bellringer;
 
 void Bellringer::check() {
-    auto *bell = (Bell *) List::head;
+    Bell *bell = (Bell *) List::head;
     // tick first bell upon check
-    if (bell != nullptr) {
+    if (bell != 0) {
         bell->tick();
     }
     // ring all bells that are run down
@@ -27,14 +27,14 @@ void Bellringer::check() {
     }
     // remove all bells that were rung
     List::head = bell;
-    if (List::head == nullptr)
+    if (List::head == 0)
         List::tail = &head;
 }
 
 void Bellringer::job(Bell *bell, int ticks) {
     int tick_count = 0;
     // find list position for new job
-    auto *listed = (Bell *) List::head;
+    Bell *listed = (Bell *) List::head;
     while (listed && tick_count + listed->wait() < ticks) {
         tick_count += listed->wait();
         listed = (Bell *) listed->next;
@@ -43,7 +43,7 @@ void Bellringer::job(Bell *bell, int ticks) {
     bell->wait(ticks - tick_count);
 
     // if new job is first bell to be rung, insert at beginning
-    if (listed == nullptr) {
+    if (listed == 0) {
         insert_first(bell);
         return;
     }
@@ -52,9 +52,9 @@ void Bellringer::job(Bell *bell, int ticks) {
 }
 
 void Bellringer::cancel(Bell *bell) {
-    auto *next = (Bell *) bell->next;
+    Bell *next = (Bell *) bell->next;
     // if theres another item in the queue, add this job's timer value to theirs
-    if (next != nullptr) {
+    if (next != 0) {
         next->wait(next->wait() + bell->wait());
     }
     // then just remove the job
