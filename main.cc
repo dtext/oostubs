@@ -5,7 +5,6 @@
 #include <user/application2.h>
 #include <device/watch.h>
 #include <guard/guard.h>
-#include <syscall/guarded_organizer.h>
 
 #define STACK_SIZE 4096
 
@@ -24,7 +23,7 @@ int main() {
     organizer.Scheduler::ready(myCoroutine);
     organizer.Scheduler::ready(myOtherCoroutine);
 
-    Watch w(0xFFFF); // maximum timer length
+    Watch w(0x00FF); // set timer length
     w.windup();
     organizer.schedule();
     return 0;

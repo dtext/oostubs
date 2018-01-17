@@ -13,8 +13,6 @@
 #include "machine/pic.h"
 #include "device/cgastr.h"
 
-Keyboard keyboard;
-
 void Keyboard::plugin() {
     plugbox.assign(plugbox.keyboard, *this);
     pic.allow(pic.keyboard);
@@ -31,10 +29,11 @@ void Keyboard::epilogue() {
         cout << "reboot" << flush;
     }
     if (press.valid()) {
-        int x, y;
-        cout.getpos(x, y);
-        cout.setpos(10, 10);
-        cout << press.ascii() << flush;
-        cout.setpos(x, y);
+        semaphore.signal();
     }
+}
+
+Key Keyboard::getkey() {
+    semaphore.wait();
+    return press;
 }
