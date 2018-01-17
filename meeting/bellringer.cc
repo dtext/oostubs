@@ -12,6 +12,8 @@
 
 #include "bellringer.h"
 
+Bellringer bellringer;
+
 void Bellringer::check() {
     auto *bell = (Bell *) List::head;
     // tick first bell upon check

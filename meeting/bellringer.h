@@ -43,4 +43,6 @@ public:
 
 };
 
+extern Bellringer bellringer;
+
 #endif

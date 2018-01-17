@@ -10,6 +10,7 @@
 #include <machine/plugbox.h>
 #include <machine/pic.h>
 #include <syscall/guarded_organizer.h>
+#include <meeting/bellringer.h>
 #include "watch.h"
 
 void Watch::windup() {
@@ -23,4 +24,5 @@ bool Watch::prologue() {
 
 void Watch::epilogue() {
     organizer.Scheduler::resume();
+    bellringer.check();
 }
