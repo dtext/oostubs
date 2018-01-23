@@ -15,6 +15,7 @@
 
 
 #include <object/list.h>
+#include <device/cgastr.h>
 #include "bell.h"
 
 class Bellringer : public List {
@@ -40,6 +41,14 @@ public:
      * @param bell the bell to be removed
      */
     void cancel(Bell *bell);
+
+    void dump()  {
+        Bell *listed = (Bell *) List::head;
+        while (listed) {
+            cout << listed->wait() << endl << flush;
+            listed = (Bell*) listed->next;
+        }
+    }
 
 };
 

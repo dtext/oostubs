@@ -18,8 +18,10 @@ Buzzer::~Buzzer() {
 }
 
 void Buzzer::ring() {
-    Customer *customer = (Customer *) dequeue();
-    organizer.Organizer::wakeup(*customer);
+    Customer *customer;
+    while (customer = (Customer *) dequeue()) {
+        organizer.Organizer::wakeup(*customer);
+    }
 }
 
 void Buzzer::set(int ms) {
