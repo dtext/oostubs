@@ -42,14 +42,6 @@ public:
      */
     void cancel(Bell *bell);
 
-    void dump()  {
-        Bell *listed = (Bell *) List::head;
-        while (listed) {
-            cout << listed->wait() << endl << flush;
-            listed = (Bell*) listed->next;
-        }
-    }
-
 };
 
 extern Bellringer bellringer;

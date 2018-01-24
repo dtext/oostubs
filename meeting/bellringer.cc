@@ -32,26 +32,36 @@ void Bellringer::check() {
 }
 
 void Bellringer::job(Bell *bell, int ticks) {
-    int tick_count = 0;
-    // find list position for new job
-    Bell *listed = (Bell *) List::head;
-    while (listed && tick_count + listed->wait() <= ticks) {
-        tick_count += listed->wait();
-        listed = (Bell *) listed->next;
-    }
-    // delta encode wait time
-    bell->wait(ticks - tick_count);
-    // if new job is first bell to be rung, insert at beginning
-    if (List::head == 0) {
+    Bell *listed = (Bell *) Queue::head;
+    if (!listed || listed->wait() > ticks) {
+        // no beĺl in list or first wait time already higher
+        bell->wait(ticks);
         insert_first(bell);
+        // update following element if need be
+        listed = (Bell *) bell->next;
+        if (listed) {
+            listed->wait(listed->wait() - ticks);
+        }
         return;
     }
-    // otherwise insert at position
-    insert_after(listed, bell);
-    Bell *next = (Bell *)(listed->next);
-    if (next) {
-        next->wait(next->wait() - (ticks - tick_count));
+
+    Bell* last = 0;
+
+    // find list position for new job
+    while (listed && listed->wait() <= ticks) {
+        ticks -= listed->wait();
+        last = listed;
+        listed = (Bell *) listed->next;
     }
+
+    bell->wait(ticks);
+    if (!listed) {
+        Queue::enqueue(bell);
+        return;
+    }
+
+    listed->wait(listed->wait() - ticks);
+    insert_after(last, bell);
 }
 
 void Bellringer::cancel(Bell *bell) {
