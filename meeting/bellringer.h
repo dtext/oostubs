@@ -15,6 +15,7 @@
 
 
 #include <object/list.h>
+#include <device/cgastr.h>
 #include "bell.h"
 
 class Bellringer : public List {

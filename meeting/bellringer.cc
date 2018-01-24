@@ -15,9 +15,9 @@
 Bellringer bellringer;
 
 void Bellringer::check() {
-    auto *bell = (Bell *) List::head;
+    Bell *bell = (Bell *) List::head;
     // tick first bell upon check
-    if (bell != nullptr) {
+    if (bell != 0) {
         bell->tick();
     }
     // ring all bells that are run down
@@ -27,34 +27,47 @@ void Bellringer::check() {
     }
     // remove all bells that were rung
     List::head = bell;
-    if (List::head == nullptr)
+    if (List::head == 0)
         List::tail = &head;
 }
 
 void Bellringer::job(Bell *bell, int ticks) {
-    int tick_count = 0;
-    // find list position for new job
-    auto *listed = (Bell *) List::head;
-    while (listed && tick_count + listed->wait() < ticks) {
-        tick_count += listed->wait();
-        listed = (Bell *) listed->next;
-    }
-    // delta encode wait time
-    bell->wait(ticks - tick_count);
-
-    // if new job is first bell to be rung, insert at beginning
-    if (listed == nullptr) {
+    Bell *listed = (Bell *) Queue::head;
+    if (!listed || listed->wait() > ticks) {
+        // no beĺl in list or first wait time already higher
+        bell->wait(ticks);
         insert_first(bell);
+        // update following element if need be
+        listed = (Bell *) bell->next;
+        if (listed) {
+            listed->wait(listed->wait() - ticks);
+        }
         return;
     }
-    // otherwise insert at position
-    insert_after(listed, bell);
+
+    Bell* last = 0;
+
+    // find list position for new job
+    while (listed && listed->wait() <= ticks) {
+        ticks -= listed->wait();
+        last = listed;
+        listed = (Bell *) listed->next;
+    }
+
+    bell->wait(ticks);
+    if (!listed) {
+        Queue::enqueue(bell);
+        return;
+    }
+
+    listed->wait(listed->wait() - ticks);
+    insert_after(last, bell);
 }
 
 void Bellringer::cancel(Bell *bell) {
-    auto *next = (Bell *) bell->next;
+    Bell *next = (Bell *) bell->next;
     // if theres another item in the queue, add this job's timer value to theirs
-    if (next != nullptr) {
+    if (next != 0) {
         next->wait(next->wait() + bell->wait());
     }
     // then just remove the job

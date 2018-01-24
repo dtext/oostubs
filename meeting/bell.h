@@ -20,7 +20,6 @@ class Bell : public Chain {
 private:
     Bell(const Bell &copy);
     int counter;
-    bool counter_zero;
 
 public:
     Bell() {}
@@ -46,7 +45,6 @@ public:
     void tick() {
         if (!run_down()) {
             --counter;
-            counter_zero = (counter <= 0);
         }
     }
 
@@ -54,7 +52,7 @@ public:
      * @return whether or not the counter ran down
      */
     bool run_down() {
-        return counter_zero;
+        return counter <= 0;
     }
 
     /**
