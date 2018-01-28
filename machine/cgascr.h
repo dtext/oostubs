@@ -17,9 +17,6 @@
 
 class CGA_Screen {
 private:
-    static const int ROW_COUNT = 25;
-    static const int ROW_SIZE = 80;
-
     CGA_Screen(const CGA_Screen &copy);
 
     void get_character(int x, int y, char &character, char &attrib);
@@ -27,6 +24,9 @@ private:
     void scroll();
 
 public:
+    static const int ROW_COUNT = 25;
+    static const int ROW_SIZE = 80;
+
     CGA_Screen() {}
 
     void show(int x, int y, char c, unsigned char attrib);
@@ -36,6 +36,8 @@ public:
     void getpos(int &x, int &y);
 
     void print(char *text, int length, unsigned char attrib);
+
+    void clear();
 
 };
 

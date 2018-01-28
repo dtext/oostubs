@@ -96,3 +96,11 @@ void CGA_Screen::scroll() {
         show(x, ROW_COUNT - 1, ' ', 15);
     }
 }
+
+void CGA_Screen::clear(){
+    for(int row=0;row<ROW_COUNT;row++){
+        for(int column=0;column<ROW_SIZE;column++){
+            show(column,row,' ', 15);
+        }
+    }
+}

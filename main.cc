@@ -5,6 +5,8 @@
 #include <user/application2.h>
 #include <device/watch.h>
 #include <guard/guard.h>
+#include <snake/snake_appl.h>
+#include <snake/keyboard_appl.h>
 
 #define STACK_SIZE 4096
 
@@ -15,16 +17,17 @@ char my_other_stack[STACK_SIZE];
 int main() {
 
     guard.enter();
-    Application a(application_stack + STACK_SIZE);
-    Application1 myCoroutine(my_stack + STACK_SIZE);
-    Application2 myOtherCoroutine(my_other_stack + STACK_SIZE);
+    SnakeApplication snakeApp(application_stack + STACK_SIZE);
+    KeyboardApplication keyboardApp(my_stack + STACK_SIZE);
+    //Application2 myOtherCoroutine(my_other_stack + STACK_SIZE);
 
-    organizer.Scheduler::ready(a);
-    organizer.Scheduler::ready(myCoroutine);
-    organizer.Scheduler::ready(myOtherCoroutine);
+    organizer.Scheduler::ready(snakeApp);
+    organizer.Scheduler::ready(keyboardApp);
+    //organizer.Scheduler::ready(myOtherCoroutine);
 
     Watch w(0x00FF); // set timer length
     w.windup();
+    keyboard.plugin();
     organizer.schedule();
     return 0;
 }

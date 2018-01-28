@@ -11,17 +11,6 @@ public:
     }
 
     void action() override {
-        //unsigned int max_value = 10000;
-        //while (true) {
-        //    Guarded_Buzzer buzzer;
-        //    buzzer.set(max_value);
-        //    buzzer.sleep();
-        //    coutSemaphore.wait();
-        //    cout << "Foo" << flush;
-        //    cout << "Ende" << flush;
-        //    coutSemaphore.signal();
-        //}
-        keyboard.plugin();
         organizer.exit();
     }
 };
