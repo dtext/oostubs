@@ -21,6 +21,8 @@ public:
     bool isOutOfField(Player player);
 
     bool collides(Player player);
+
+    void gameLoop();
 };
 
 #endif //OOSTUBS_SNAKE_APPL_H

@@ -11,13 +11,13 @@ enum Direction{
 
 class Player {
 private:
-    int id;
     int x;
     int y;
     Direction direction;
+    unsigned char style;
 
 public:
-    Player(int x, int y, Direction direction) : x(x),y(y),direction(direction){};
+    Player(int x, int y, Direction direction, unsigned char style) : x(x),y(y),direction(direction),style(style){};
     void move(){
         switch(direction){
             case NORTH:
@@ -36,8 +36,23 @@ public:
     }
     int getX(){return x;}
     int getY(){return y;}
+    unsigned char getStyle(){return style;}
     void setDirection(Direction dir){
-         direction=dir;
+        switch(dir){
+            case NORTH:
+                if(direction == SOUTH) return;
+                break;
+            case SOUTH:
+                if(direction == NORTH) return;
+                break;
+            case EAST:
+                if(direction == WEST) return;
+                break;
+            case WEST:
+                if(direction == EAST) return;
+                break;
+        }
+        direction=dir;
     }
 };
 
